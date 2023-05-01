@@ -1,6 +1,5 @@
-
-import Navbar from "@/component/navbar/navbar/Navbar";
-import '../styles/reset.css'
+import Navbar from "@/component/navbar/Navbar";
+import "../styles/reset.css";
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
 
