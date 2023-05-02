@@ -1,0 +1,92 @@
+.navLinks {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  color: #333333;
+  font-size: 1.6rem;
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+}
+
+.navLink:last-child {
+  margin-left: 20px;
+}
+
+.navLink span {
+  font-size: 1.6rem;
+}
+
+.navLink svg {
+  margin-right: 5px;
+  transition: all 0.2s ease-in-out;
+  font-size: 1.8rem;
+}
+
+.navLink:hover svg {
+  color: #808080;
+}
+
+.navLink span {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Telefon */
+@media (max-width: 450px) {
+  .navLink span {
+    display: none;
+  }
+}
+
+.loginOptions {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 150px;
+  height: 100px;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  border: 1px solid rgb(207, 207, 207);
+  z-index: 9999;
+  border-radius: 5px;
+}
+
+.loginOptions::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: 10px solid transparent;
+  border-bottom-color: rgb(207, 207, 207);
+}
+
+.loginOptions::after {
+  content: "";
+  position: absolute;
+  top: -19px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: 10px solid transparent;
+  border-bottom-color: #fffefe;
+}
+
+.optionButton {
+  font-size: 1.4rem;
+  padding: 5px 15px;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 5px;
+}
+
+.optionButton:hover {
+  background-color: #dbdbdb;
+}

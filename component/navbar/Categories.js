@@ -1,17 +1,28 @@
 "use client";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./Navbar.module.css";
 
 const Categories = ({ categories }) => {
   const [activeCategory, setActiveCategory] = useState("all");
+  const ref = useRef();
 
   const handleClick = (category) => {
     setActiveCategory(category);
   };
 
+  const handleWheel = (event) => {
+    event.preventDefault();
+    ref.current.scrollLeft += event.deltaY * 3;
+  };
+
   return (
-    <nav className={styles.categories}>
+    <nav
+      className={styles.categories}
+      onWheel={handleWheel}
+      onDrag={handleWheel}
+      ref={ref}
+    >
       <ul className={styles.list}>
         {categories.map((category, index) => (
           <li
@@ -21,7 +32,8 @@ const Categories = ({ categories }) => {
             }`}
           >
             <Link
-              href={`/category/${category}`}
+              // href={`/category/${category}`}
+              href={"/"}
               onClick={() => handleClick(category)}
             >
               {category}

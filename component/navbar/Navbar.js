@@ -1,26 +1,21 @@
 import Link from "next/link";
-import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import styles from "./Navbar.module.css";
 import Categories from "./Categories";
+import LoginButton from "./user/Login";
 
-const Navbar = () => {
+const Navbar = ({ categories }) => {
   // Api bağlayana kadar dummy data
-  const categories = [
-    "Kadın",
-    "Erkek",
-    "Çocuk",
-    "Elektronik",
-    "Ev",
-    "Bağ-Bahçe",
-    "Ayakkabı",
-    "Market",
-    "Çok Satanlar",
-    "Ayakkabı",
-    "Market",
-    "Çok Satanlar",
-    
+  const categoriess = [
+    "DUMMY Category",
+    "DUMMY Category",
+    "DUMMY Category",
+    "DUMMY Category",
+    "DUMMY Category",
+    "DUMMY Category",
   ];
 
+  const allCategory = [...categories, ...categoriess];
   return (
     <div>
       <header className={styles.navbar}>
@@ -37,17 +32,10 @@ const Navbar = () => {
             <FaSearch />
           </button>
         </form>
-        <div className={styles.navLinks}>
-          <Link href="/giris" className={styles.navLink}>
-            <FaUser /> <span>Giriş Yap</span>
-          </Link>
-          <Link href="/sepetim" className={styles.navLink}>
-            <FaShoppingCart /> <span>Sepetim</span>
-          </Link>
-        </div>
-      </header>
 
-      <Categories categories={categories} />
+        <LoginButton />
+      </header>
+      <Categories categories={allCategory} />
     </div>
   );
 };

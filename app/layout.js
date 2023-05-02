@@ -10,11 +10,19 @@ export const metadata = {
   description: "E-Ticaret projesidir",
 };
 
-export default function RootLayout({ children }) {
+async function getData() {
+  const response = await fetch("https://fakestoreapi.com/products/categories");
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
+export default async function RootLayout({ children }) {
+  const data = await getData();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar />
+        <Navbar categories={data} />
         {children}
       </body>
     </html>
