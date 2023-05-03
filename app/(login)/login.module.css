@@ -1,0 +1,135 @@
+.loginForm {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 50px 40px ;
+  background-color: #ffffff;
+  box-shadow: 0px 106px 42px rgba(0, 0, 0, 0.01),
+    0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
+    0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 11px;
+  margin: 50px auto;
+}
+
+@media (max-width: 768px) {
+  .loginForm {
+    padding: 10px 40px 20px 40px;
+    box-shadow: none;
+    margin: 0 auto;
+  }
+}
+
+.formLayout {
+  padding-bottom: 4rem;
+}
+
+.formLayout h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.formLayout p {
+  padding-top: 1rem;
+  font-size: 1.5rem;
+  text-indent: 1rem;
+}
+.inputcontainer {
+  width: 100%;
+}
+.logResInput {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  border-radius: 5px;
+  padding: 0px 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.logResInput:first-child {
+  margin-bottom: 3rem;
+}
+
+.logResInput input {
+  padding: 10px 5px;
+  border: none;
+  font-size: 1.3rem;
+  background-color: transparent;
+  width: 100%;
+}
+
+.logResInput label {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-weight: 600;
+  color: #c0c0c0;
+}
+
+.logResInput input:focus {
+  outline: none;
+}
+
+.logResInput svg {
+  font-size: 1.8rem;
+}
+
+.passwordForget {
+  text-align: right;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.formButton {
+  width: 100%;
+  padding: 10px 0px;
+  border: 0;
+  background: #115dfc;
+  border-radius: 7px;
+  outline: none;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.seperator {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8b8e98;
+}
+.seperator span {
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+}
+.line {
+  width: 100%;
+  height: 1px;
+  border: 0;
+  background-color: #e8e8e8;
+}
+
+.googleButton {
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  background: #ffffff;
+  border-radius: 7px;
+  outline: none;
+  color: #242424;
+  border: 1px solid #e5e5e5;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.googleButton svg {
+  font-size: 1.8rem;
+}

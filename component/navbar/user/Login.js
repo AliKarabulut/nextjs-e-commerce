@@ -18,7 +18,7 @@ function LoginButton() {
   return (
     <div className={styles.navLinks}>
       <Link
-        href="/giris"
+        href="/login"
         className={styles.navLink}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -29,7 +29,7 @@ function LoginButton() {
             <Link href="/login" className={styles.optionButton}>
               Giriş yap
             </Link>
-            <Link href="/" className={styles.optionButton}>
+            <Link href="/register" className={styles.optionButton}>
               Kayıt ol
             </Link>
           </div>
