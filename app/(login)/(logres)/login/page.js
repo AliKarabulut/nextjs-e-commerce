@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import { CiMail, CiLock } from "react-icons/ci";
-import styles from "../login.module.css";
+import styles from "../../login.module.css";
 
 const Login = (props) => {
   return (
@@ -20,7 +20,7 @@ const Login = (props) => {
           <input placeholder="Password" type="password" id="password"></input>
         </div>
       </div>
-      <Link href="/" className={styles.passwordForget}>
+      <Link href="/forgotpassword" className={styles.passwordForget}>
         Şifremi unuttum
       </Link>
       <Link href="/" className={styles.formButton}>

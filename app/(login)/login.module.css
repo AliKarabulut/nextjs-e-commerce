@@ -23,7 +23,7 @@
 }
 
 .formLayout {
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 
 .formLayout h1 {
@@ -49,8 +49,8 @@
   border: 1px solid #e5e5e5;
 }
 
-.logResInput:first-child {
-  margin-bottom: 3rem;
+.logResInput:nth-child(2) {
+  margin-top: 3rem;
 }
 
 .logResInput input {
@@ -64,10 +64,21 @@
 
 .passwordStrength {
   margin-top: 10px;
-  height: 2px;
+  height: 3px;
   border-radius: 10px;
-  background-color: #115dfc;
+  background-color: #A52A2A;
   transition: width 0.3s ease-in-out;
+}
+
+.passwordStrength[style*="50%"] {
+  background-color: #FF6347;
+}
+
+.passwordStrength[style*="75%"] {
+  background-color: #7CFC00;
+}
+.passwordStrength[style*="100%"] {
+  background-color: #FFFF00;
 }
 
 .checker {

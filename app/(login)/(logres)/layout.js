@@ -1,6 +1,7 @@
-import styles from "./login.module.css"; 
+import styles from "../login.module.css"; 
 
-const Layout = ({ children }) => {
+const Layout = ({ children, params }) => {
+  console.log(params);
     return (
       <form action="" className={styles.loginForm}>
         <div className={styles.formLayout}>

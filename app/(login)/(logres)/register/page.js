@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Fragment, useRef, useState } from "react";
 import { CiMail, CiLock } from "react-icons/ci";
-import styles from "../login.module.css";
+import styles from "../../login.module.css";
 
 const Register = (props) => {
   const [password, setPassword] = useState("");
@@ -69,10 +69,13 @@ const Register = (props) => {
             onBlur={() => setinputClick(false)}
           ></input>
         </div>
-        <div
-          className={styles.passwordStrength}
-          style={{ width: `${passwordStrength}%` }}
-        />
+
+        {inputClick &&
+          <div
+            className={styles.passwordStrength}
+            style={{ width: `${passwordStrength}%` }}
+          />
+        }
       </div>
       {inputClick && (
         <div className={styles.checker}>
