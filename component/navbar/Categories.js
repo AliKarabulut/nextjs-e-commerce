@@ -36,7 +36,7 @@ const Categories = ({ categories }) => {
               href={"/"}
               onClick={() => handleClick(category)}
             >
-              {category}
+              {category.charAt(0).toUpperCase() + category.slice(1)}
             </Link>
           </li>
         ))}

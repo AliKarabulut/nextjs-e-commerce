@@ -1,9 +1,10 @@
+import { headers } from "next/headers";
 import Navbar from "@/component/navbar/Navbar";
 import "../styles/reset.css";
 import "../styles/globals.css";
-import { Inter } from "next/font/google";
+import { Source_Sans_Pro  } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Source_Sans_Pro ({ subsets: ["latin"], weight: ['300','400','600'], });
 
 export const metadata = {
   title: "e-commerce",
@@ -16,14 +17,27 @@ async function getData() {
   return data;
 }
 
-export default async function RootLayout({ children }) {
+export default async function RootLayout({ children, mobileLogin }) {
   const data = await getData();
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar categories={data} />
-        {children}
-      </body>
-    </html>
-  );
+
+  const headersList = headers();
+  const referer = headersList.get("user-agent");
+  const device = referer.match(
+    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+  )
+    ? "mobile"
+    : "desktop";
+
+  if (device === "mobile") {
+    return mobileLogin;
+  } else {
+    return (
+      <html lang="en">
+        <body className={inter.className}>
+          <Navbar categories={data} />
+          {children}
+        </body>
+      </html>
+    );
+  }
 }

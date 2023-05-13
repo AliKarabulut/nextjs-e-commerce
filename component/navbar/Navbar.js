@@ -17,7 +17,7 @@ const Navbar = ({ categories }) => {
 
   const allCategory = [...categories, ...categoriess];
   return (
-    <div>
+    <div className={styles.navContainer}>
       <header className={styles.navbar}>
         <Link href="/" className={styles.logo}>
           E-Ticaret

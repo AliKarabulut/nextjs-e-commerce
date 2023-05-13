@@ -1,0 +1,38 @@
+.rating {
+  display: flex;
+  position: relative;
+  height: 15px;
+  width: 70px;
+}
+
+.starWrapper {
+  display: flex;
+  position: absolute;
+  height: 15px;
+  width: max-content;
+}
+
+.star {
+  width: 12px;
+  height: 15px;
+  color: rgb(185, 185, 185);
+}
+
+.fullStar {
+  color: yellow;
+  width: 12px;
+  height: 15px;
+}
+
+.halfStar {
+  height: 15px;
+  width: var(--width);
+  overflow: hidden;
+}
+
+.halfStar svg {
+  height: 15px;
+  width: 12px;
+  overflow: hidden;
+  max-width: 12px;
+}
