@@ -6,7 +6,8 @@ const MainPage = async (props) => {
   const products = await getAllProduct();
 
   return (
-    <div className={styles.homePageWrapper} >
+    <div className={styles.homePageWrapper}>
+
       {products.map((e) => {
         return <ProductCard products={e} />;
       })}
