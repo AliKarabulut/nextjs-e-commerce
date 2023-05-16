@@ -44,7 +44,7 @@ export async function getFilteredProduct(name) {
 
     const data = await response.json();
 
-    return data.filter((product ) => product.title.toLowerCase().includes(title.toLowerCase()))  
+    return data.filter((product ) => product.title.toLowerCase().includes(name.toLowerCase()))  
 
   } catch (error) {
     throw new Error(`Failed to feeeeeetch products: ${error.message}`);
