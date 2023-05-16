@@ -1,7 +1,7 @@
 .homePageWrapper {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, min-content);
+  grid-template-columns: repeat(4, min-content);
   justify-content: space-between;
   grid-gap: 1.6rem;
 }

@@ -37,7 +37,7 @@ export default async function RootLayout({ children, mobileLogin }) {
       <html lang="en">
         <body className={inter.className}>
           <Navbar categories={data} />
-          {children}
+          <main>{children}</main>
         </body>
       </html>
     );
