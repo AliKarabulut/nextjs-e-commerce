@@ -1,0 +1,20 @@
+.error{
+    background-color: blueviolet !important;
+    width: 500px !important;
+    height: 500px;
+}
+
+.oh{
+    text-align: center;
+    text-transform: capitalize;
+    font-style: italic;
+    font-size: 5rem;
+
+}
+
+
+.kral{
+    font: 300;
+    font-size: 50px;
+    text-align: center;
+}

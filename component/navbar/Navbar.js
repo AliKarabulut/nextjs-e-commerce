@@ -20,7 +20,7 @@ const Navbar = ({ categories }) => {
     <div className={styles.navContainer}>
       <header className={styles.navbar}>
         <Link href="/" className={styles.logo}>
-          E-Ticaret
+          E-Commerce
         </Link>
         <form className={styles.searchForm}>
           <input

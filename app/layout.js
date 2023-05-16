@@ -2,9 +2,12 @@ import { headers } from "next/headers";
 import Navbar from "@/component/navbar/Navbar";
 import "../styles/reset.css";
 import "../styles/globals.css";
-import { Source_Sans_Pro  } from "next/font/google";
+import { Source_Sans_Pro } from "next/font/google";
 
-const inter = Source_Sans_Pro ({ subsets: ["latin"], weight: ['300','400','600'], });
+const inter = Source_Sans_Pro({
+  subsets: ["latin"],
+  weight: ["300", "400", "600"],
+});
 
 export const metadata = {
   title: "e-commerce",
@@ -19,7 +22,6 @@ async function getData() {
 
 export default async function RootLayout({ children, mobileLogin }) {
   const data = await getData();
-
   const headersList = headers();
   const referer = headersList.get("user-agent");
   const device = referer.match(
