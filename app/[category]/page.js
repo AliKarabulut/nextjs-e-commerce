@@ -1,11 +1,10 @@
 import ProductCard from "@/component/product-card/product-card.js";
-import { getAllProduct } from "./api/fake-store-api";
-import styles from "./page.module.css";
+import { getCategoryProduct } from "../api/fake-store-api";
 import ProductContainer from "@/component/product-container/product-container";
 
-const MainPage = async (props) => {
-  const products = await getAllProduct();
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+const Category = async ({ params: {category} }) => {
+  const products = await getCategoryProduct(category);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   return (
     <ProductContainer>
@@ -16,4 +15,4 @@ const MainPage = async (props) => {
   );
 };
 
-export default MainPage;
+export default Category;

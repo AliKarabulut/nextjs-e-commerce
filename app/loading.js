@@ -1,9 +1,9 @@
 import Skeleton from "@/component/skeleton/skeleton";
-import styles from "./page.module.css";
+import ProductContainer from "@/component/product-container/product-container";
 
 export default function Loading() {
   return (
-    <div className={styles.homePageWrapper}>
+    <ProductContainer>
       <Skeleton></Skeleton>
       <Skeleton></Skeleton>
       <Skeleton></Skeleton>
@@ -12,6 +12,6 @@ export default function Loading() {
       <Skeleton></Skeleton>
       <Skeleton></Skeleton>
       <Skeleton></Skeleton>
-    </div>
+    </ProductContainer>
   );
 }

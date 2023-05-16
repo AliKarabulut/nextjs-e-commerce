@@ -31,11 +31,7 @@ const Categories = ({ categories }) => {
               activeCategory === category ? styles.active : ""
             }`}
           >
-            <Link
-              // href={`/category/${category}`}
-              href={"/"}
-              onClick={() => handleClick(category)}
-            >
+            <Link href={category} onClick={() => handleClick(category)}>
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </Link>
           </li>
