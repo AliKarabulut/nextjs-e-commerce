@@ -3,8 +3,16 @@ import { FaSearch } from "react-icons/fa";
 import styles from "./Navbar.module.css";
 import Categories from "./Categories";
 import LoginButton from "./user/Login";
+import { getFilteredProduct } from "@/app/api/fake-store-api";
 
-const Navbar = ({ categories }) => {
+
+async function getData() {
+  const res = await getFilteredProduct()
+
+  return res.json();
+}
+
+const Navbar = async ({ categories }) => {
   // Api bağlayana kadar dummy data
   const categoriess = [
     "DUMMY Category",
