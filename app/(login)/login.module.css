@@ -1,5 +1,6 @@
 .loginForm {
   width: fit-content;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -81,9 +82,10 @@
   background-color: #FFFF00;
 }
 
-.checker {
+.checker span {
   width: 100%;
   text-align: left;
+  font-size: 1.1rem;
 }
 
 .logResInput input:-webkit-autofill {

@@ -16,9 +16,10 @@ const NotFound = (props) => {
 
     if (count === 0) {
       router.back()
+      return () => clearTimeout(timer);
     }
-    console.log("asdsad")
-    return () => clearTimeout(timer);
+
+    
   }, [count]);
 
   return (

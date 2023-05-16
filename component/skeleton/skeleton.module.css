@@ -1,6 +1,17 @@
 .skeleton {
   width: 250px;
   height: 375px;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(228, 227, 227);
   border-radius: 0.8rem;
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .7;
+  }
 }

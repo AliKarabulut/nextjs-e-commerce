@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 
 const MainPage = async (props) => {
   const products = await getAllProduct();
+  await new Promise(resolve => setTimeout(resolve, 5000))
 
   return (
     <div className={styles.homePageWrapper}>
