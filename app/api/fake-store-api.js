@@ -38,9 +38,9 @@ export async function getFilteredProduct(name) {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
 
-    if (!response.ok) {
+    if (!response.ok || name === null) {
       throw new Error("An error occurred while fetching the data.");
-    }
+    } 
 
     const data = await response.json();
 

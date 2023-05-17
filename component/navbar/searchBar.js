@@ -5,19 +5,23 @@ import { FaSearch } from "react-icons/fa";
 import { getFilteredProduct } from "@/app/api/fake-store-api";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const SearchBar = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [active, setActive] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
-    const handleSearch = async () => {
-      const filteredData = await getFilteredProduct(searchTerm);
-      setFilteredProducts(filteredData);
-    };
+    if (searchTerm !== "") {
+      const handleSearch = async () => {
+        const filteredData = await getFilteredProduct(searchTerm);
+        setFilteredProducts(filteredData);
+      };
 
-    handleSearch();
+      handleSearch();
+    }
   }, [searchTerm]);
 
   const handleChange = (event) => {
@@ -47,8 +51,15 @@ const SearchBar = () => {
     });
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if(searchTerm !== ""){
+      router.push(`/search?=${searchTerm}`);
+    }
+  };
+
   return (
-    <form className={styles.searchForm}>
+    <form className={styles.searchForm} onSubmit={submitHandler}>
       <input
         type="text"
         placeholder="Ara..."
@@ -65,7 +76,7 @@ const SearchBar = () => {
         <ul className={styles.filteredResults}>
           {filteredProducts.slice(0, 10).map((product) => (
             <li key={product.id}>
-              <Link href={`/${product.category}/${product.id}`}>
+              <Link href={`/search?=${product.title}`}>
                 <span
                   dangerouslySetInnerHTML={{
                     __html: highlightMatch(product.title),
