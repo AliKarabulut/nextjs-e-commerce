@@ -5,7 +5,6 @@ import ProductContainer from "@/component/product-container/product-container";
 
 const MainPage = async (props) => {
   const products = await getAllProduct();
-  await new Promise((resolve) => setTimeout(resolve, 5000));
 
   return (
     <ProductContainer>

@@ -1,6 +1,6 @@
 .navContainer {
   background-color: #ffffff;
-  padding: 10px 20px;
+  padding: 10px 10%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
 }
@@ -46,18 +46,30 @@
   grid-area: filteredResults;
   background-color: #f5f5f5;
   width: calc(100% + 24px);
-  left: -12px; 
+  height: fit-content;
+  left: -12px;
   padding: 6px 12px;
   z-index: 9999;
   cursor: pointer;
+  animation: open 0.4s ease-in-out;
+  overflow: hidden;
 }
 
-.filteredResults li{
+@keyframes open {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 1000px; /* Uygun bir maksimum yükseklik değeri belirleyin */
+  }
+}
+
+.filteredResults li {
   padding: 5px 0px;
   font-size: 1.3rem;
 }
 
-.filteredResults li:hover{
+.filteredResults li:hover {
   font-weight: 600;
 }
 
@@ -90,8 +102,14 @@
   color: #808080;
 }
 
+@media (max-width: 1024px) {
+  .navContainer {
+    padding: 10px 20px;
+  }
+}
+
 /* Telefon */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .navbar {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -104,7 +122,7 @@
     grid-auto-flow: column;
     grid-row: 2;
     grid-column: span 2;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 }
 

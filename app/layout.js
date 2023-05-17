@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import Navbar from "@/component/navbar/Navbar";
+import Footer from "@/component/footer";
 import "../styles/reset.css";
 import "../styles/globals.css";
 import { Source_Sans_Pro } from "next/font/google";
@@ -38,6 +39,7 @@ export default async function RootLayout({ children, mobileLogin }) {
         <body className={inter.className}>
           <Navbar categories={data} />
           <main>{children}</main>
+          <Footer></Footer>
         </body>
       </html>
     );

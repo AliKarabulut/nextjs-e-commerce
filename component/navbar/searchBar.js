@@ -23,11 +23,11 @@ const SearchBar = () => {
   };
 
   const handleInputFocus = () => {
-    setActive(true);
+    setActive(!active);
   };
 
   const handleInputBlur = () => {
-    setActive(false);
+    setActive(!active);
   };
 
   return (
