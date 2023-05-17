@@ -12,15 +12,6 @@
     0px 59px 36px rgba(0, 0, 0, 0.05), 0px 26px 26px rgba(0, 0, 0, 0.09),
     0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
   border-radius: 11px;
-  margin: 50px auto;
-}
-
-@media (max-width: 768px) {
-  .loginForm {
-    padding: 10px 40px 20px 40px;
-    box-shadow: none;
-    margin: 0 auto;
-  }
 }
 
 .formLayout {
@@ -67,19 +58,19 @@
   margin-top: 10px;
   height: 3px;
   border-radius: 10px;
-  background-color: #A52A2A;
+  background-color: #a52a2a;
   transition: width 0.3s ease-in-out;
 }
 
 .passwordStrength[style*="50%"] {
-  background-color: #FF6347;
+  background-color: #ff6347;
 }
 
 .passwordStrength[style*="75%"] {
-  background-color: #7CFC00;
+  background-color: #7cfc00;
 }
 .passwordStrength[style*="100%"] {
-  background-color: #FFFF00;
+  background-color: #ffff00;
 }
 
 .checker span {

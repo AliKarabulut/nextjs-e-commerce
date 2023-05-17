@@ -1,8 +1,9 @@
 .navContainer {
   background-color: #ffffff;
-  padding: 10px 10%;
+  padding: 10px 10% 5px 10%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  min-width: 501px;
 }
 
 .navbar {
@@ -27,7 +28,6 @@
     "filteredResults filteredResults";
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
-  gap: 6px 12px;
   background-color: #f5f5f5;
   border-radius: 5px;
   padding: 6px 12px;
@@ -66,6 +66,9 @@
 
 .filteredResults li {
   padding: 5px 0px;
+}
+.filteredResults li strong,
+.filteredResults li span {
   font-size: 1.3rem;
 }
 
@@ -102,14 +105,8 @@
   color: #808080;
 }
 
-@media (max-width: 1024px) {
-  .navContainer {
-    padding: 10px 20px;
-  }
-}
-
 /* Telefon */
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
   .navbar {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -153,7 +150,7 @@
   text-align: center;
   position: relative;
   cursor: pointer;
-  padding: 10px 10px;
+  padding: 0px 10px 2px 10px;
   min-width: fit-content;
 }
 
@@ -177,7 +174,7 @@
 }
 
 .categories::-webkit-scrollbar {
-  height: 5px;
+  height: 4px;
 }
 
 .categories::-webkit-scrollbar-track {
@@ -197,16 +194,8 @@
   font-size: 1.4rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1399px) {
   .categoriesBtn {
-    padding: 15px 10px;
-  }
-
-  .categoriesBtn:hover::after {
-    width: 0;
-  }
-
-  .categoriesBtn.active::after {
-    width: 0;
+    margin-bottom: 10px;
   }
 }

@@ -1,8 +1,10 @@
 "use client";
+import React from "react";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { getFilteredProduct } from "@/app/api/fake-store-api";
 import styles from "./Navbar.module.css";
+import Link from "next/link";
 
 const SearchBar = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -27,7 +29,22 @@ const SearchBar = () => {
   };
 
   const handleInputBlur = () => {
-    setActive(!active);
+    setTimeout(() => {
+      setActive(!active);
+    }, 200);
+  };
+
+  const highlightMatch = (text) => {
+    const regex = new RegExp(searchTerm, "gi");
+    let isFirstMatch = true;
+
+    return text.replace(regex, (match) => {
+      if (isFirstMatch) {
+        isFirstMatch = false;
+        return "<strong>" + match + "</strong>";
+      }
+      return match;
+    });
   };
 
   return (
@@ -47,7 +64,15 @@ const SearchBar = () => {
       {active && (
         <ul className={styles.filteredResults}>
           {filteredProducts.slice(0, 10).map((product) => (
-            <li key={product.id}> {product.title}</li>
+            <li key={product.id}>
+              <Link href={`/${product.category}/${product.id}`}>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: highlightMatch(product.title),
+                  }}
+                />
+              </Link>
+            </li>
           ))}
         </ul>
       )}
