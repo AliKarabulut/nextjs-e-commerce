@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Star from "../star";
 import styles from "./product.module.css";
+import Image from "next/image";
 
 const ProductCard = ({ products }) => {
   const rate = products.rating.rate;
@@ -10,7 +11,7 @@ const ProductCard = ({ products }) => {
       <div className={styles.productCard}>
         <div>
           {" "}
-          <img src={products.image} alt="" />
+          <Image src={products.image} alt={products.title} width="200" height="200" />
           <div className={styles.title}>
             {products.title.length > 30
               ? products.title.substring(0, 30) + "..."
