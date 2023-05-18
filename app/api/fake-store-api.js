@@ -50,3 +50,24 @@ export async function getFilteredProduct(name) {
     throw new Error(`Failed to feeeeeetch products: ${error.message}`);
   }
 }
+
+
+export async function getAllCategories(name) {
+  // aramaları filtrelemeyi daha iyi simüle edeceğni düşündüğüm için 
+  // her input girişi için tekar tekrar sorgu yapacağım :))
+  try {
+    const response = await fetch("https://fakestoreapi.com/products/categories");
+
+    if (!response.ok || name === null) {
+      throw new Error("An error occurred while fetching the data.");
+    } 
+
+    const data = await response.json();
+
+    return data
+
+  } catch (error) {
+    throw new Error(`Failed to feeeeeetch products: ${error.message}`);
+  }
+}
+

@@ -1,10 +1,18 @@
 import ProductCard from "@/component/product-card/product-card.js";
-import { getCategoryProduct } from "../api/fake-store-api";
+import { getAllCategories, getCategoryProduct } from "../api/fake-store-api";
 import ProductContainer from "@/component/product-container/product-container";
 
-const Category = async ({ params: {category} }) => {
+export const generateStaticParams = async () => {
+  const categories = await getAllCategories();
+  return categories.map((categories) => ({
+    id: {
+      category: categories,
+    },
+  }));
+};
+
+const Category = async ({ params: { category } }) => {
   const products = await getCategoryProduct(category);
-  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   return (
     <ProductContainer>
