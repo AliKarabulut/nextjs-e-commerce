@@ -2,7 +2,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { getFilteredProduct } from "@/app/api/fake-store-api";
+import { getFilteredProduct } from "@/app/api/filteredProducts/route";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -14,27 +14,27 @@ const SearchBar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (searchTerm !== "") {
-      const handleSearch = async () => {
-        const filteredData = await getFilteredProduct(searchTerm);
-        setFilteredProducts(filteredData);
-      };
+    console.log(searchTerm);
+    const handleSearch = async () => {
+      const filteredData = await getFilteredProduct(searchTerm);
+      setFilteredProducts(filteredData);
+    };
 
-      handleSearch();
-    }
+    handleSearch();
   }, [searchTerm]);
 
   const handleChange = (event) => {
+    setActive(true);
     setSearchTerm(event.target.value);
   };
 
   const handleInputFocus = () => {
-    setActive(!active);
+    setActive(true);
   };
 
   const handleInputBlur = () => {
     setTimeout(() => {
-      setActive(!active);
+      setActive(false);
     }, 200);
   };
 
@@ -53,8 +53,9 @@ const SearchBar = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if(searchTerm !== ""){
-      router.push(`/search?=${searchTerm}`);
+    setActive(false);
+    if (searchTerm !== "") {
+      router.push(`/search?s=${searchTerm}`);
     }
   };
 
@@ -78,6 +79,7 @@ const SearchBar = () => {
             <li key={product.id}>
               <Link href={`/search?=${product.title}`}>
                 <span
+                  onClick={() => setSearchTerm(product.title)}
                   dangerouslySetInnerHTML={{
                     __html: highlightMatch(product.title),
                   }}

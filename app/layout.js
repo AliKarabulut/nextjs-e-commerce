@@ -4,7 +4,6 @@ import Footer from "@/component/footer";
 import "../styles/reset.css";
 import "../styles/globals.css";
 import { Source_Sans_Pro } from "next/font/google";
-import { getAllCategories } from "./api/fake-store-api";
 
 const inter = Source_Sans_Pro({
   subsets: ["latin"],
@@ -16,12 +15,17 @@ export const metadata = {
   description: "E-Ticaret projesidir",
 };
 
+async function getData() {
+  const response = await fetch("https://fakestoreapi.com/products/categories");
+  const data = await response.json();
+  return data;
+}
 
 export default async function RootLayout({ children, mobileLogin }) {
-  const data = await getAllCategories();
+  const data = await getData();
   const headersList = headers();
   const referer = headersList.get("user-agent");
-  const device = referer.match(
+  const device = referer?.match(
     /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
   )
     ? "mobile"

@@ -1,29 +1,26 @@
 "use client";
 
-import { useSearchParams, notFound  } from "next/navigation";
-import { getFilteredProduct } from "../api/fake-store-api";
+import { notFound, useSearchParams } from "next/navigation";
+import { getFilteredProduct } from "../api/filteredProducts/route";
 import ProductContainer from "@/component/product-container/product-container";
 import ProductCard from "@/component/product-card/product-card.js";
 
-
 export default async function SearchBar() {
   const searchParams = useSearchParams();
-  const search = searchParams.get("");
 
+  if (!searchParams.has("s")) {
+    notFound();
+  } else {
+    const search = searchParams.get("s");
 
-  const filteredProducts = await getFilteredProduct(search);
-  // console.log(filteredProducts.error)
-  // if (filteredProducts.error) {
-  //   return notFound();
-  // }
+    const filteredProducts = await getFilteredProduct(search);
 
-
-
-  return (
-    <ProductContainer>
-      {filteredProducts.map((e) => {
-        return <ProductCard products={e} />;
-      })}
-    </ProductContainer>
-  );
+    return (
+      <ProductContainer>
+        {filteredProducts.map((e) => {
+          return <ProductCard products={e} />;
+        })}
+      </ProductContainer>
+    );
+  }
 }

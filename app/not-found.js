@@ -10,17 +10,19 @@ const NotFound = (props) => {
   const router = useRouter()
 
   useEffect(() => {
+    if (count === 0) {
+      router.push("/");
+      return
+    }
+  
     const timer = setTimeout(() => {
       setCount((prevCount) => prevCount - 1);
+      console.log("ananan")
     }, 1000);
-
-    if (count === 0) {
-      router.back()
-      return () => clearTimeout(timer);
-    }
-
-    
-  }, [count]);
+  
+    return () => clearTimeout(timer);
+  }, [count, router]);
+  
 
   return (
     <div className={styles.error}>

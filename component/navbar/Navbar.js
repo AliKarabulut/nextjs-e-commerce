@@ -4,7 +4,7 @@ import Categories from "./Categories";
 import LoginButton from "./user/Login";
 import SearchBar from "./searchBar";
 
-const Navbar = ({ categories }) => {
+const Navbar = async ({ categories }) => {
   // Api bağlayana kadar dummy data
   const categoriess = [
     "DUMMY Category",
