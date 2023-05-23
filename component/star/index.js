@@ -3,7 +3,6 @@ import styles from "./star.module.css";
 
 const Star = ({ rate }) => {
   const yellow = rate * 20;
-
   const fullStars = Math.floor(yellow / 20);
   const hasHalfStar = yellow % 20 !== 0;
 
