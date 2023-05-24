@@ -1,35 +1,22 @@
-import { getSingleProduct } from "@/app/api/singleProducts/route";
+import ProductCard from "@/component/product-card/product-card.js";
+import SingleImageCard from "@/component/singleImageCard";
 import Star from "@/component/star";
-import Image from "next/image";
+import { getSingleProduct } from "@/app/api/singleProducts/route";
+import { getLimitedResults } from "@/app/api/similarProducts/route";
 import { AiOutlineHeart } from "react-icons/ai";
 import styles from "./singleProduct.module.css";
+
 const SingleProductPage = async ({ params: { id } }) => {
   const products = await getSingleProduct(id);
+  const limitedResults = await getLimitedResults();
   return (
-    <div>
+    <div className={styles.singleProductsWrapper}>
       <div className={styles.category}></div>
       <div className={styles.productContainer}>
-        <div className={styles.imageContainer}>
-          <div className={styles.bigImage}>
-            <Image
-              src={products.image}
-              alt={products.title}
-              width="200"
-              height="200"
-            />
-          </div>
-          <div className={styles.smallImage}>
-            <Image
-              src={products.image}
-              alt={products.title}
-              width="200"
-              height="200"
-            />
-          </div>
-        </div>
+        <SingleImageCard image={products.image} title={products.title} />
         <div className={styles.productDetailContainer}>
-          <div className={styles.title}>{products.title}</div>
-          <div>
+          <h1 className={styles.title}>{products.title}</h1>
+          <div className={styles.starWrapper}>
             <Star rate={products.rating.rate}></Star>
             <div>{products.rating.count} Değerlendirme</div>
           </div>
@@ -42,6 +29,15 @@ const SingleProductPage = async ({ params: { id } }) => {
             <hr className={styles.line} />
           </div>
           <div className={styles.description}>{products.description}</div>
+        </div>
+      </div>
+      <div className={styles.smilarProductsContainer}>
+        <div className={styles.smilarTitle}>Benzer Ürünler</div>
+        <div className={styles.similarProducts}>
+          {" "}
+          {limitedResults.map((e) => {
+            return <ProductCard products={e} />;
+          })}
         </div>
       </div>
     </div>
