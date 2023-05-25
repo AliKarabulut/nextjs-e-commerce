@@ -1,4 +1,6 @@
 import { headers } from "next/headers";
+import { userCart } from "@/stores/user-cart";
+import { store } from "@/stores";
 import Navbar from "@/component/navbar/Navbar";
 import Footer from "@/component/footer";
 import "../styles/reset.css";
@@ -22,6 +24,8 @@ async function getData() {
 }
 
 export default async function RootLayout({ children, mobileLogin }) {
+  await store.dispatch(userCart());
+
   const data = await getData();
   const headersList = headers();
   const referer = headersList.get("user-agent");
