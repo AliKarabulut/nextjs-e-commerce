@@ -21,10 +21,13 @@ const SingleProductPage = async ({ params: { id } }) => {
             <div>{products.rating.count} Değerlendirme</div>
           </div>
           <div className={styles.price}>{products.price}$</div>
-          <button className={styles.addButton}>Sepete Ekle</button>
-          <button>
-            <AiOutlineHeart />
-          </button>
+          <div>
+            {" "}
+            <button className={styles.addButton}>Sepete Ekle</button>
+            <button>
+              <AiOutlineHeart />
+            </button>
+          </div>
           <div className={styles.seperator}>
             <hr className={styles.line} />
           </div>
@@ -32,7 +35,8 @@ const SingleProductPage = async ({ params: { id } }) => {
         </div>
       </div>
       <div className={styles.smilarProductsContainer}>
-        <div className={styles.smilarTitle}>Benzer Ürünler</div>
+        <hr className={styles.line} />
+        <h2 className={styles.smilarTitle}>Benzer Ürünler</h2>
         <div className={styles.similarProducts}>
           {" "}
           {limitedResults.map((e) => {

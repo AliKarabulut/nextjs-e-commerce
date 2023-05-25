@@ -36,7 +36,7 @@ function LoginButton() {
         )}
       </Link>
 
-      <Link href="/sepetim" className={styles.navLink}>
+      <Link href="/sepet" className={styles.navLink}>
         <FaShoppingCart /> <span>Sepetim</span>
       </Link>
     </div>
