@@ -6,9 +6,11 @@ export const userCart = createAsyncThunk("userCart", async () => {
   return sepet;
 });
 
+
 const initialState = {
   cart: [],
 };
+
 
 export const { reducer, actions } = createSlice({
   name: "user",

@@ -3,19 +3,11 @@ import styles from "./Navbar.module.css";
 import Categories from "./Categories";
 import LoginButton from "./user/Login";
 import SearchBar from "./searchBar";
+import { getAllCategories } from "@/app/api/allCategories/route";
 
-const Navbar = async ({ categories }) => {
-  // Api bağlayana kadar dummy data
-  const categoriess = [
-    "DUMMY Category",
-    "DUMMY Category",
-    "DUMMY Category",
-    "DUMMY Category",
-    "DUMMY Category",
-    "DUMMY Category",
-  ];
+const Navbar = async () => {
+  const categories = await getAllCategories()
 
-  const allCategory = [...categories, ...categoriess];
   return (
     <div className={styles.navContainer}>
       <header className={styles.navbar}>
@@ -25,7 +17,7 @@ const Navbar = async ({ categories }) => {
         <SearchBar></SearchBar>
         <LoginButton />
       </header>
-      <Categories categories={allCategory} />
+      <Categories categories={categories} />
     </div>
   );
 };

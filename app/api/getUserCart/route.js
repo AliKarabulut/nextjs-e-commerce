@@ -39,9 +39,8 @@ export async function getUserCartWithImage() {
       const response = await getSingleProduct(product.productId);
       product.image = response.image;
       product.title = response.title;
-
+      product.price = response.price;
     }
-
   } catch (error) {
     throw new Error("An error occurred while fetching the data.");
   }

@@ -9,9 +9,9 @@ const ProductCard = ({ products }) => {
   return (
     <Link href={`/${products.category}/${products.id}`}>
       <div className={styles.productCard}>
-        <div>
+        <div className={styles.imageTitleContainer}>
           {" "}
-          <Image src={products.image} alt={products.title} width="200" height="200" />
+          <div className={styles.imageContainer}> <Image src={products.image} alt={products.title}  fill={true} sizes="(width: 100%) (height: 100%)" style={{objectFit: "contain"}}/></div>
           <div className={styles.title}>
             {products.title.length > 30
               ? products.title.substring(0, 30) + "..."

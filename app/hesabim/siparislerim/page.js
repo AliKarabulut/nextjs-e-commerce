@@ -1,17 +1,15 @@
-// "use client";
+"use client";
 import Orders from "@/component/orders";
-import { store } from "@/stores";
+import { useSelector } from "react-redux";
 
-
-const Sepet = async () => {
-  
-  const sepet = store.getState().cart.cart;
+const Siparis = async () => {
+  const sepet = useSelector((state) => state.cart);
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column" , alignItems: "center", width: "100%"}}>
       {sepet.map((e) => {
         return <Orders order={e} />;
       })}
     </div>
   );
 };
-export default Sepet;
+export default Siparis;

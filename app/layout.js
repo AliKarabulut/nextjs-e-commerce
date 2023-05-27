@@ -1,3 +1,4 @@
+import { StoreProvider } from "@/stores/store-provider";
 import { headers } from "next/headers";
 import { userCart } from "@/stores/user-cart";
 import { store } from "@/stores";
@@ -16,17 +17,11 @@ export const metadata = {
   title: "e-commerce",
   description: "E-Ticaret projesidir",
 };
-
-async function getData() {
-  const response = await fetch("https://fakestoreapi.com/products/categories");
-  const data = await response.json();
-  return data;
-}
-
 export default async function RootLayout({ children, mobileLogin }) {
   await store.dispatch(userCart());
+  const { cart } = store.getState().cart;
+  console.log(cart)
 
-  const data = await getData();
   const headersList = headers();
   const referer = headersList.get("user-agent");
   const device = referer?.match(
@@ -41,9 +36,11 @@ export default async function RootLayout({ children, mobileLogin }) {
     return (
       <html lang="en">
         <body className={inter.className}>
-          <Navbar categories={data} />
-          <main>{children}</main>
-          <Footer></Footer>
+          <StoreProvider preloadedState={{ cart: { cart } }}>
+            <Navbar />
+            <main>{children}</main>
+            <Footer></Footer>
+          </StoreProvider>
         </body>
       </html>
     );
