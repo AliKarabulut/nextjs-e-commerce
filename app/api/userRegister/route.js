@@ -1,6 +1,6 @@
-export async function userLogin(username, password) {
+export async function userRegister(username, password) {
+  // I have to do hardcode body because fakestoreapi.com want body like this but we have just email and password for register
   try {
-
     const res = await fetch("https://fakestoreapi.com/users", {
       method: "POST",
       body: JSON.stringify({
@@ -25,8 +25,12 @@ export async function userLogin(username, password) {
       }),
     });
 
-    return await res.json();
+    const data = await res.json();
+    if (data.id) {
+      localStorage.setItem("id", data.id);
+    }
+    return data 
   } catch (error) {
-    throw new Error("Kayıt olurken bir hata oluştu.");
+    throw new Error("Register failed!");
   }
 }

@@ -1,9 +1,11 @@
 import { getUserCartWithImage } from "@/app/api/getUserCart/route";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const userCart = createAsyncThunk("userCart", async () => {
-  const sepet = await getUserCartWithImage();
-  return sepet;
+export const shoppingCart = createAsyncThunk("userCart", async () => {
+  // const id = localStorage.getItem("id");
+  // console.log(id)
+  const cart = await getUserCartWithImage();
+  return cart;
 });
 
 
@@ -17,7 +19,7 @@ export const { reducer, actions } = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(userCart.fulfilled, (state, action) => {
+    builder.addCase(shoppingCart.fulfilled, (state, action) => {
       state.cart = action.payload;
     });
   },

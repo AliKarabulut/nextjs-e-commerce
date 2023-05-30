@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { Fragment } from "react";
 import { CiMail } from "react-icons/ci";
 import styles from "../login.module.css";
 
 const ForgotPassword = () => {
   return (
-    <form action="" className={styles.loginForm}>
-      <div className={styles.formLayout}>
+    <form action="" className={styles.formWrapper}>
+      <div className={styles.formHeader}>
         <h1>E-Commerce</h1>
         <p>Şifreni değiştirmek için mailine ihtiyacımız var </p>
       </div>

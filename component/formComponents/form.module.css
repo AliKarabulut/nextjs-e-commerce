@@ -1,0 +1,113 @@
+/*
+Login and Register Form css
+*/
+
+.form {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.logResInput {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  position: relative;
+  border-radius: 5px;
+  padding: 0px 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.logResInput:nth-child(1) {
+  margin-bottom: 2rem;
+}
+
+.logResInput input {
+  padding: 10px 5px;
+  border: none;
+  font-size: 1.3rem;
+  background-color: transparent;
+  width: 100%;
+  text-align: left;
+}
+
+.formButton {
+  width: 100%;
+  padding: 10px 0px;
+  border: 0;
+  background: #115dfc;
+  border-radius: 7px;
+  outline: none;
+  color: #ffffff;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1.4rem;
+  margin-top: 1.2rem;
+
+}
+
+.passwordForget {
+  text-align: right;
+  width: 100%;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+
+/*
+Register Form css
+*/
+
+
+.passwordStrength {
+  margin-top: 10px;
+  height: 3px;
+  border-radius: 10px;
+  background-color: #a52a2a;
+  transition: width 0.3s ease-in-out;
+}
+
+.passwordStrength[style*="50%"] {
+  background-color: #ff6347;
+}
+
+.passwordStrength[style*="75%"] {
+  background-color: #7cfc00;
+}
+.passwordStrength[style*="100%"] {
+  background-color: #ffff00;
+}
+
+.checker span {
+  width: 100%;
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.logResInput input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 100px #ffffff inset;
+}
+
+.logResInput label {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-weight: 600;
+  color: #c0c0c0;
+}
+
+.logResInput input:focus {
+  outline: none;
+}
+
+.logResInput svg {
+  font-size: 1.8rem;
+}
+
+
+.formButton:disabled {
+  background-color: #e5e5e5;
+  color: #8b8e98;
+  cursor: not-allowed;
+}

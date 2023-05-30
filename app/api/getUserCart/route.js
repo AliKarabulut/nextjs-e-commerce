@@ -1,9 +1,9 @@
 import { getSingleProduct } from "../singleProducts/route";
 
-export async function getUserCart() {
+export async function getUserCart(id) {
   const products = [];
   try {
-    const response = await fetch("https://fakestoreapi.com/carts/user/3");
+    const response = await fetch("https://fakestoreapi.com/carts/user/2");
 
     if (!response.ok) {
       throw new Error("An error occurred while fetching the data.");

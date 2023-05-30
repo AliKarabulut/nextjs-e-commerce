@@ -1,6 +1,5 @@
 import { StoreProvider } from "@/stores/store-provider";
-import { headers } from "next/headers";
-import { userCart } from "@/stores/user-cart";
+import { shoppingCart } from "@/stores/user-cart";
 import { store } from "@/stores";
 import Navbar from "@/component/navbar/Navbar";
 import Footer from "@/component/footer";
@@ -18,25 +17,20 @@ export const metadata = {
   description: "E-Ticaret projesidir",
 };
 export default async function RootLayout({ children, mobileLogin }) {
-  await store.dispatch(userCart());
-  const { cart } = store.getState().cart;
-  console.log(cart)
+  const mobile = store.getState().device;
+  console.log(mobile);
 
-  const headersList = headers();
-  const referer = headersList.get("user-agent");
-  const device = referer?.match(
-    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-  )
-    ? "mobile"
-    : "desktop";
-
-  if (device === "mobile") {
-    return mobileLogin;
+  if (mobile === "mobile") {
+    return (
+      <StoreProvider preloadedState={{ device: { mobile } }}>
+        {mobileLogin}
+      </StoreProvider>
+    );
   } else {
     return (
       <html lang="en">
         <body className={inter.className}>
-          <StoreProvider preloadedState={{ cart: { cart } }}>
+          <StoreProvider preloadedState={{ device: { mobile } }}>
             <Navbar />
             <main>{children}</main>
             <Footer></Footer>
