@@ -18,7 +18,6 @@ const LoginForm = () => {
   const success = useSelector((state) => state.user.success);
 
 
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
@@ -31,7 +30,7 @@ const LoginForm = () => {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleFormSubmit}>
+    <form className={styles.form} onSubmit={() => handleFormSubmit}>
       <div>
         <div className={styles.logResInput}>
           <label htmlFor="email">Email</label>

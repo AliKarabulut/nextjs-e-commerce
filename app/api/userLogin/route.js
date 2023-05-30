@@ -1,3 +1,5 @@
+import { cookies } from 'next/headers';
+
 export async function userLogin(username, password) {
   // for demo because fakestoreapi.com does not have a mail and password for login
   if (username === "mail@mail.com" && password === "123456") {
@@ -18,9 +20,7 @@ export async function userLogin(username, password) {
     });
     const data = await res.json();
     if (data.token) {
-      localStorage.setItem("token", data.token);
-      // I need id for get cart because i can't get cart with token
-      localStorage.setItem("id", 1);
+      cookies().set('token', 1);
     }
     return data;
   } catch (error) {
