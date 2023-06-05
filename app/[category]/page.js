@@ -1,25 +1,29 @@
 import ProductCard from "@/component/product-card/product-card.js";
 import ProductContainer from "@/component/product-container/product-container";
-import { getAllCategories } from "../api/allCategories/route";
-import { getCategoryProduct } from "../api/categoryProducts/route";
+// import { getCategoryProduct } from "../api/categoryProducts/[category]/route";
 
 export const dynamicParams = false;
 export const revalidate = 600;
 export const dynamic = "force-static";
 
 export const generateStaticParams = async () => {
-  const categories = await getAllCategories();
-  return categories.map((categories) => ({
+  const categories = await fetch(
+    "https://fakestoreapi.com/products/categories"
+  );
+  const data = await categories.json();
+  return data.map((categories) => ({
     category: categories,
   }));
 };
 
 const Category = async ({ params: { category } }) => {
-  const products = await getCategoryProduct(category);
-
+  const products = await fetch(
+    "https://fakestoreapi.com/products/category/" + category
+  );
+  const data = await products.json();
   return (
     <ProductContainer>
-      {products.map((e) => {
+      {data.map((e) => {
         return <ProductCard products={e} />;
       })}
     </ProductContainer>

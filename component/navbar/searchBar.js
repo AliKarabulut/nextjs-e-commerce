@@ -2,10 +2,24 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import { getFilteredProduct } from "@/app/api/filteredProducts/route";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+
+const getData = async (id) => {
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products`);
+    const data = await response.json();
+
+    const filteredData = data.filter((product) =>
+      product.title.toLowerCase().includes(id.toLowerCase())
+    );
+
+    return filteredData;
+  } catch (error) {
+    throw new Error("Filtered products could not be fetched!");
+  }
+};
 
 const SearchBar = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -14,13 +28,12 @@ const SearchBar = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log(searchTerm);
-    const handleSearch = async () => {
-      const filteredData = await getFilteredProduct(searchTerm);
+    const delaySearch = setTimeout(async () => {
+      const filteredData = await getData(searchTerm);
       setFilteredProducts(filteredData);
-    };
-
-    handleSearch();
+    }, 300);
+  
+    return () => clearTimeout(delaySearch);
   }, [searchTerm]);
 
   const handleChange = (event) => {
@@ -58,7 +71,6 @@ const SearchBar = () => {
       router.push(`/search?s=${searchTerm}`);
     }
   };
-
   return (
     <form className={styles.searchForm} onSubmit={submitHandler}>
       <input
@@ -77,7 +89,7 @@ const SearchBar = () => {
         <ul className={styles.filteredResults}>
           {filteredProducts.slice(0, 10).map((product) => (
             <li key={product.id}>
-              <Link href={`/search?=${product.title}`}>
+              <Link href={`/search?s=${product.title}`}>
                 <span
                   onClick={() => setSearchTerm(product.title)}
                   dangerouslySetInnerHTML={{

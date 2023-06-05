@@ -1,34 +1,34 @@
-import { userLogin } from "@/app/api/userLogin/route";
-import { userRegister } from "@/app/api/userRegister/route";
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchUser = createAsyncThunk(
   "userLogin",
-  async ({username, password}) => {
+  async ({ email, password }) => {
     // for smiulation loading
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    const user = await userLogin(username, password);
-    return user;
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const reqBody = { username: email, password: password };
+    fetch("api/userLogin", {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+    });
   }
 );
 
 export const fetchRegister = createAsyncThunk(
   "userRegister",
-  async ({username, password}) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-    const user = await userRegister(username, password);
-    console.log(user)
-    return user;
+  async ({ email, password }) => {
+    // for smiulation loading
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const reqBody = { username: email, password: password };
+    fetch("api/userRegister", {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+    });
   }
 );
 
-
 const initialState = {
-  user: [],
   pending: false,
   error: null,
-  success: false
 };
 
 export const { reducer, actions } = createSlice({
@@ -38,12 +38,9 @@ export const { reducer, actions } = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchUser.pending, (state, action) => {
       state.pending = true;
-   
     });
     builder.addCase(fetchUser.fulfilled, (state, action) => {
-      state.user = action.payload;
       state.error = null;
-      state.success = true;
       state.pending = false;
     });
 
@@ -54,15 +51,12 @@ export const { reducer, actions } = createSlice({
 
     builder.addCase(fetchRegister.pending, (state, action) => {
       state.pending = true;
-   
     });
     builder.addCase(fetchRegister.fulfilled, (state, action) => {
-      state.user = action.payload;
       state.error = null;
-      state.success = true;
       state.pending = false;
     });
-    
+
     builder.addCase(fetchRegister.rejected, (state, action) => {
       state.pending = false;
       state.error = action.error.message;

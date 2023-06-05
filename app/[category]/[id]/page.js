@@ -1,14 +1,32 @@
 import ProductCard from "@/component/product-card/product-card.js";
 import SingleImageCard from "@/component/singleImageCard";
 import Star from "@/component/star";
-import { getSingleProduct } from "@/app/api/singleProducts/route";
-import { getLimitedResults } from "@/app/api/similarProducts/route";
 import { AiOutlineHeart } from "react-icons/ai";
 import styles from "./singleProduct.module.css";
 
+const getSingleProduct = async (id) => {
+  try {
+    const data = await fetch("https://fakestoreapi.com/products/" + id);
+    return data.json();
+  } catch (error) {
+    throw new Error("Product could not be fetched!");
+  }
+};
+
+const getSimilarProducts = async () => {
+  try {
+    const data = await fetch("https://fakestoreapi.com/products?limit=13");
+    return data.json();
+  } catch (error) {
+    throw new Error("Similar products could not be fetched!");
+  }
+};
+
 const SingleProductPage = async ({ params: { id } }) => {
   const products = await getSingleProduct(id);
-  const limitedResults = await getLimitedResults();
+
+  const limitedResults = await getSimilarProducts();
+
   return (
     <div className={styles.singleProductsWrapper}>
       <div className={styles.category}></div>

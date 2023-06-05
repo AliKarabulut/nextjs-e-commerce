@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { CiMail, CiLock } from "react-icons/ci";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,12 +11,9 @@ const LoginForm = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const pending = useSelector((state) => state.user.pending);
   const error = useSelector((state) => state.user.error);
-  const success = useSelector((state) => state.user.success);
-
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -25,12 +22,8 @@ const LoginForm = () => {
     dispatch(fetchUser({ username: email, password: password }));
   };
 
-  if (success) {
-    router.replace("/");
-  }
-
   return (
-    <form className={styles.form} onSubmit={() => handleFormSubmit}>
+    <form className={styles.form} onSubmit={handleFormSubmit}>
       <div>
         <div className={styles.logResInput}>
           <label htmlFor="email">Email</label>
@@ -53,10 +46,10 @@ const LoginForm = () => {
           ></input>
         </div>
       </div>
-      <button href="/forgotpassword" className={styles.passwordForget}>
+      <Link href="/forgotpassword" className={styles.passwordForget}>
         Şifremi unuttum
-      </button>
-      <button type="submit" className={styles.formButton}>
+      </Link>
+      <button type="submit" className={styles.submitButton}>
         {error ? error : "Login"}
       </button>
       {pending && <Loader />}

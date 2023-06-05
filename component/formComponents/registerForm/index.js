@@ -1,7 +1,6 @@
 "use client";
 import { useState, useRef } from "react";
 import { CiMail, CiLock } from "react-icons/ci";
-import { useRouter } from "next/navigation";
 import Loader from "@/component/loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "@/stores/auth";
@@ -18,21 +17,16 @@ const RegisterForm = (props) => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const pending = useSelector((state) => state.user.pending);
   const error = useSelector((state) => state.user.error);
-  const success = useSelector((state) => state.user.success);
-  if (success) {
-    router.replace("/");
-  }
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     dispatch(fetchRegister({ username: email, password: password }));
   };
-
 
   const handlePasswordChange = (event) => {
     const value = event.target.value;
@@ -115,7 +109,7 @@ const RegisterForm = (props) => {
         </div>
       )}
       <button
-        className={styles.formButton}
+        className={styles.submitButton}
         disabled={
           !hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar
         }

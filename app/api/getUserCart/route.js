@@ -1,5 +1,3 @@
-import { getSingleProduct } from "../singleProducts/route";
-
 export async function getUserCart(id) {
   const products = [];
   try {
@@ -36,7 +34,7 @@ export async function getUserCartWithImage() {
   const products = await getUserCart();
   try {
     for (let product of products) {
-      const response = await getSingleProduct(product.productId);
+      const response = await fetch("singleProduct/" + product.productId);
       product.image = response.image;
       product.title = response.title;
       product.price = response.price;

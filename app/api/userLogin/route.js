@@ -1,12 +1,7 @@
-import { cookies } from 'next/headers';
-
-export async function userLogin(username, password) {
-  // for demo because fakestoreapi.com does not have a mail and password for login
-  if (username === "mail@mail.com" && password === "123456") {
-    username = "mor_2314";
-    password = "83r5^_";
-  }
-
+import { NextResponse } from 'next/server';
+export async function POST(request) {
+  let response = new NextResponse()
+  const { username, password } = await request.json();
   try {
     const res = await fetch("https://fakestoreapi.com/auth/login", {
       method: "POST",
@@ -14,15 +9,15 @@ export async function userLogin(username, password) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: username,
-        password: password,
+        username: "mor_2314",
+        password: "83r5^_",
       }),
     });
+
     const data = await res.json();
-    if (data.token) {
-      cookies().set('token', 1);
-    }
-    return data;
+    response.cookies.set('token', data.token)
+    response.cookies.set('id', 1)
+    return response
   } catch (error) {
     throw new Error("Login failed!");
   }
