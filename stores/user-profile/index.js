@@ -7,7 +7,7 @@ export const userProfile = createAsyncThunk("userProfile", async (id) => {
 });
 
 const initialState = {
-  profile: [],
+  profile: {},
 };
 
 export const { reducer, actions } = createSlice({

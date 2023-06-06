@@ -9,7 +9,6 @@ import { userProfile } from "@/stores/user-profile";
 import { Source_Sans_Pro } from "next/font/google";
 import "../styles/reset.css";
 import "../styles/globals.css";
-import { getUserCartWithImage } from "./api/getUserCart/route";
 
 const inter = Source_Sans_Pro({
   subsets: ["latin"],
@@ -22,6 +21,10 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, mobileLogin }) {
+
+
+
+
   const cookieStore = cookies();
   const id = cookieStore.get("id");
   if (id) {

@@ -22,7 +22,7 @@
 }
 
 .navLink svg {
-  margin-right: 5px;
+  margin-right: 1rem;
   transition: all 0.2s ease-in-out;
   font-size: 1.8rem;
 }
@@ -42,13 +42,13 @@
   }
 }
 
-.loginOptions {
+.options {
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 150px;
-  height: 100px;
+  width: max-content;
+  height: max-content;
   top: 100%;
   left: 50%;
   transform: translate(-50%, 0);
@@ -60,7 +60,7 @@
   border-radius: 5px;
 }
 
-.loginOptions::before {
+.options::before {
   content: "";
   position: absolute;
   top: -20px;
@@ -70,7 +70,7 @@
   border-bottom-color: rgb(207, 207, 207);
 }
 
-.loginOptions::after {
+.options::after {
   content: "";
   position: absolute;
   top: -19px;
@@ -88,5 +88,26 @@
 }
 
 .optionButton:hover {
+  background-color: #dbdbdb;
+}
+
+/*Account css*/
+.name {
+  width: 100%;
+  text-align: left;
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin-bottom: .3rem;
+}
+.accountOptionButton {
+  display: flex;
+  width:100px;
+  text-align: left;
+  font-size: 1.2rem;
+  padding: .5rem;
+}
+
+.accountOptionButton:hover {
   background-color: #dbdbdb;
 }

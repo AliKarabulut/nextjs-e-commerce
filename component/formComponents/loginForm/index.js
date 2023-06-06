@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+
 import { CiMail, CiLock } from "react-icons/ci";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,6 @@ const LoginForm = () => {
 
   const { pending } = useSelector((state) => state.auth);
   const { error } = useSelector((state) => state.auth);
-  const { success } = useSelector((state) => state.auth);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -23,10 +22,7 @@ const LoginForm = () => {
     const password = passwordRef.current.value;
     dispatch(fetchUser({ username: email, password: password }));
   };
-  if (success) {
-    const router = useRouter();
-    router.push("/");
-  }
+
   return (
     <form className={styles.form} onSubmit={handleFormSubmit}>
       <div>
