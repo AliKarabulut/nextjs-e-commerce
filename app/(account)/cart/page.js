@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const Sepet = async () => {
   const sepet = useSelector((state) => state.cart.cart);
+  console.log(sepet)
   return (
     <div
       style={{
@@ -13,9 +14,9 @@ const Sepet = async () => {
         width: "100%",
       }}
     >
-      {sepet.map((e, index) => {
+      {/* {sepet.map((e, index) => {
         return <Orders order={e} key={index} />;
-      })}
+      })} */}
     </div>
   );
 };

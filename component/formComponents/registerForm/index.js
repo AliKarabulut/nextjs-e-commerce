@@ -4,6 +4,8 @@ import { CiMail, CiLock } from "react-icons/ci";
 import Loader from "@/component/loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchRegister } from "@/stores/auth";
+import { useRouter } from "next/navigation";
+
 import styles from "../form.module.css";
 
 const RegisterForm = (props) => {
@@ -18,15 +20,19 @@ const RegisterForm = (props) => {
   const passwordRef = useRef("");
   const dispatch = useDispatch();
 
-  const pending = useSelector((state) => state.user.pending);
-  const error = useSelector((state) => state.user.error);
-
+  const { pending } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.user);
+  const { success } = useSelector((state) => state.user);
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     dispatch(fetchRegister({ username: email, password: password }));
   };
+  if (success) {
+    const router = useRouter();
+    router.push("/");
+  }
 
   const handlePasswordChange = (event) => {
     const value = event.target.value;

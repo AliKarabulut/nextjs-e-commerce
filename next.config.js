@@ -13,6 +13,21 @@ const nextConfig = {
       },
     ],
   },
+  async redirects(){
+    return [
+      {
+      source: '/login' || '/register' || '/forgotpassword',
+      has: [
+        {
+          type: 'cookie',
+          key: 'token',
+        }
+      ],
+      permanent: false,
+      destination: '/'
+    }
+  ]
+  }
 }
 
 module.exports = nextConfig

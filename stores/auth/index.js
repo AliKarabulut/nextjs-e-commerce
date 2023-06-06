@@ -29,10 +29,11 @@ export const fetchRegister = createAsyncThunk(
 const initialState = {
   pending: false,
   error: null,
+  success: false,
 };
 
 export const { reducer, actions } = createSlice({
-  name: "user",
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -42,6 +43,7 @@ export const { reducer, actions } = createSlice({
     builder.addCase(fetchUser.fulfilled, (state, action) => {
       state.error = null;
       state.pending = false;
+      state.success = true;
     });
 
     builder.addCase(fetchUser.rejected, (state, action) => {
@@ -55,6 +57,7 @@ export const { reducer, actions } = createSlice({
     builder.addCase(fetchRegister.fulfilled, (state, action) => {
       state.error = null;
       state.pending = false;
+      state.success = true;
     });
 
     builder.addCase(fetchRegister.rejected, (state, action) => {

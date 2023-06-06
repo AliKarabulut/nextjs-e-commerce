@@ -1,12 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { reducer as cartReducer } from "./user-cart";
-import { reducer as userReducer } from "./auth";
+import { reducer as authReducer } from "./auth";
+import { reducer as profileReducer } from "./user-profile";
+
 
 export function createStore(preloadedState = {}) {
   const store = configureStore({
     reducer: {
       cart: cartReducer,
-      user: userReducer,
+      auth: authReducer,
+      profile: profileReducer,
     },
     preloadedState,
   });

@@ -1,7 +1,7 @@
 export async function getUserCart(id) {
   const products = [];
   try {
-    const response = await fetch("https://fakestoreapi.com/carts/user/2");
+    const response = await fetch("https://fakestoreapi.com/carts/user/" + id);
 
     if (!response.ok) {
       throw new Error("An error occurred while fetching the data.");
@@ -30,18 +30,18 @@ export async function getUserCart(id) {
   return products;
 }
 
-export async function getUserCartWithImage() {
-  const products = await getUserCart();
+export async function getUserCartWithImage(id) {
+  const products = await getUserCart(id);
+  const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const data = await response.json();
   try {
     for (let product of products) {
-      const response = await fetch("singleProduct/" + product.productId);
-      product.image = response.image;
-      product.title = response.title;
-      product.price = response.price;
+      product.image = data.image;
+      product.title = data.title;
+      product.price = data.price;
     }
   } catch (error) {
     throw new Error("An error occurred while fetching the data.");
   }
-
   return products;
 }

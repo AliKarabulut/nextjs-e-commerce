@@ -1,21 +1,19 @@
 import { getUserCartWithImage } from "@/app/api/getUserCart/route";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const shoppingCart = createAsyncThunk("userCart", async () => {
-  // const id = localStorage.getItem("id");
-  // console.log(id)
-  const cart = await getUserCartWithImage();
-  return cart;
-});
-
 
 const initialState = {
   cart: [],
 };
 
+export const shoppingCart = createAsyncThunk("cart/shoppingCart", async (id) => {
+  const cart = await getUserCartWithImage(id);
+  return cart;
+});
+
 
 export const { reducer, actions } = createSlice({
-  name: "user",
+  name: "cart",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
