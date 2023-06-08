@@ -1,4 +1,3 @@
-import { getUserCartWithImage } from "@/app/api/getUserCart/route";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const userProfile = createAsyncThunk("userProfile", async (id) => {
@@ -10,10 +9,14 @@ const initialState = {
   profile: {},
 };
 
-export const { reducer, actions } = createSlice({
+export const { actions, reducer } = createSlice({
   name: "profile",
   initialState,
-  reducers: {},
+  reducers: {
+    deleteUser: (state, action) => {
+      state.profile = {};
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(userProfile.fulfilled, (state, action) => {
       state.profile = action.payload;

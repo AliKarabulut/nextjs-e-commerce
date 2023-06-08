@@ -6,15 +6,21 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "@/stores/auth";
 import Loader from "@/component/loader";
+import { useRouter } from "next/navigation";
 import styles from "../form.module.css";
 
 const LoginForm = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { pending } = useSelector((state) => state.auth);
   const { error } = useSelector((state) => state.auth);
+  const { successful } = useSelector((state) => state.auth);
+  if(successful){
+    router.push("/")
+  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault();

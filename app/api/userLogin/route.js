@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+
 export async function POST(request) {
   let response = new NextResponse()
   const { username, password } = await request.json();
@@ -18,6 +19,7 @@ export async function POST(request) {
     response.cookies.set('token', data.token)
     response.cookies.set('id', 1)
     return response
+
   } catch (error) {
     throw new Error("Login failed!");
   }

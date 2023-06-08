@@ -21,10 +21,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, mobileLogin }) {
-
-
-
-
   const cookieStore = cookies();
   const id = cookieStore.get("id");
   if (id) {

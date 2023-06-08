@@ -1,17 +1,31 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
-import styles from "./Login.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
 import { BiBasket } from "react-icons/bi";
 import { VscSignOut } from "react-icons/vsc";
+import { actions as userActions } from "@/stores/user-profile";
+import { actions as cartActions } from "@/stores/user-cart";
+import styles from "./Login.module.css";
 
 function LoginButton() {
-  const  {profile}  = useSelector((state) => state.profile);
-  const [showOptions, setShowOptions] = useState(false);
+  const { profile } = useSelector((state) => state.profile);
   console.log(profile);
+  const [showOptions, setShowOptions] = useState(false);
+  const [successful, setSuccessful] = useState(false);
+  useEffect(() => {
+    profile.id ? setSuccessful(true) : setSuccessful(false);
+  }, [profile]);
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(userActions.deleteUser());
+    dispatch(cartActions.deleteCart());
+  };
+
   const handleMouseEnter = () => {
     setShowOptions(true);
   };
@@ -22,7 +36,7 @@ function LoginButton() {
 
   return (
     <div className={styles.navLinks}>
-      {Object.keys(profile).length < 1 && (
+      {!successful && (
         <Link
           href="/login"
           className={styles.navLink}
@@ -42,7 +56,7 @@ function LoginButton() {
           )}
         </Link>
       )}
-      {Object.keys(profile).length >= 1 && (
+      {successful && (
         <Link
           href="/account"
           className={styles.navLink}
@@ -59,7 +73,11 @@ function LoginButton() {
               <Link href="/order" className={styles.accountOptionButton}>
                 <BiBasket /> Order
               </Link>
-              <Link href="/register" className={styles.accountOptionButton}>
+              <Link
+                href="/logout"
+                className={styles.accountOptionButton}
+                onClick={logoutHandler}
+              >
                 <VscSignOut /> Sign Out
               </Link>
             </div>

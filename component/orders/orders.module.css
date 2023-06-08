@@ -10,29 +10,47 @@
 }
 
 .detailContainer {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 0.15fr;
+  align-items: center;
   border-bottom: 1px solid #ccc;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
-.detailContainer div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .orderCard {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.2fr;
   align-items: center;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.orderCard:last-child {
+  border-bottom: none;
 }
 
 .imageContainer {
   position: relative;
-  width: 100px;
-  height: 60px;
+  width: 50px;
+  height: 70px;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+}
+
+.orderTitle {
+  font-size: 1.2rem;
+}
+
+.orderQuantity {
+  font-size: 1.2rem;
+}
+
+.date b {
+  font-size: 1.3rem;
+}
+
+.date {
+  font-size: 1.2rem;
 }

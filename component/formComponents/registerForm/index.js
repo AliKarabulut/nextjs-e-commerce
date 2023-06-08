@@ -22,17 +22,18 @@ const RegisterForm = (props) => {
 
   const { pending } = useSelector((state) => state.user);
   const { error } = useSelector((state) => state.user);
-  const { success } = useSelector((state) => state.user);
+  const { successful } = useSelector((state) => state.user);
+  if(successful){
+    router.push("/")
+  }
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     dispatch(fetchRegister({ username: email, password: password }));
   };
-  if (success) {
-    const router = useRouter();
-    router.push("/");
-  }
+
 
   const handlePasswordChange = (event) => {
     const value = event.target.value;

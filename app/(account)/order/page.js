@@ -1,15 +1,28 @@
-"use client";
 import Orders from "@/component/orders";
-import { useSelector } from "react-redux";
+import { cookies } from "next/headers";
+
+const getData = async (id) => {
+  const response = await fetch("https://fakestoreapi.com/carts/user/"+id);
+  const data = await response.json();
+  return data;
+
+}
 
 const Siparis = async () => {
-  const sepet = useSelector((state) => state.cart);
-  console.log(sepet);
+  const cookieStore = cookies()
+  const cart = await getData(cookieStore.get("id").value)
   return (
-    <div style={{ display: "flex", flexDirection: "column" , alignItems: "center", width: "100%"}}>
-      {/* {sepet.map((e) => {
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
+      {cart.map((e) => {
         return <Orders order={e} />;
-      })} */}
+      })}
     </div>
   );
 };
