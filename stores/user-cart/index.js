@@ -1,4 +1,3 @@
-import { getUserCartWithImage } from "@/app/api/getUserCart/route";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -8,8 +7,9 @@ const initialState = {
 export const shoppingCart = createAsyncThunk(
   "cart/shoppingCart",
   async (id) => {
-    const cart = await getUserCartWithImage(id);
-    return cart;
+    const response = await fetch("https://fakestoreapi.com/carts/user/" + id);
+    const data = await response.json();
+    return data;
   }
 );
 

@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const userProfile = createAsyncThunk("userProfile", async (id) => {
-  const profile = await fetch("https://fakestoreapi.com/users/" + id);
-  return profile.json();
+  const response = await fetch("https://fakestoreapi.com/users/" + id);
+  const profile = await response.json();
+  return profile;
 });
 
 const initialState = {
@@ -13,7 +14,7 @@ export const { actions, reducer } = createSlice({
   name: "profile",
   initialState,
   reducers: {
-    deleteUser: (state, action) => {
+    deleteUser: (state) => {
       state.profile = {};
     },
   },
