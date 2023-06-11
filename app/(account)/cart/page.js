@@ -1,23 +1,41 @@
-"use client";
-import Orders from "@/component/orders";
-import { useSelector } from "react-redux";
+import Carts from "@/component/cart";
+import { store } from "@/stores";
+import { cookies } from "next/headers";
+import { Fragment } from "react";
+import { shoppingCart } from "@/stores/user-cart";
 
-const Sepet = async () => {
-  const sepet = useSelector((state) => state.cart.cart);
-  console.log(sepet)
+
+const getData = async (id) => {
+  const response = await fetch("https://fakestoreapi.com/carts/user/" + id);
+  const data = await response.json();
+  return data;
+};
+
+const Cart = async () => {
+  const cookieStore = cookies();
+  const id = cookieStore.get("id");
+  if(id){
+    await store.dispatch(shoppingCart(id.value));
+  }
+  const {cart} = store.getState().cart
+  console.log(cart)
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
-      {/* {sepet.map((e, index) => {
-        return <Orders order={e} key={index} />;
-      })} */}
-    </div>
+    <Fragment>
+      {cart.length === 0 ? (
+        <div>Sepetiniz boş</div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <Carts cart={cart[0]} />
+        </div>
+      )}
+    </Fragment>
   );
 };
-export default Sepet;
+export default Cart;

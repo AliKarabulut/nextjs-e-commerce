@@ -80,14 +80,15 @@
   border-bottom-color: #fffefe;
 }
 
-.optionButton {
+.loginOptionButton {
   font-size: 1.4rem;
-  padding: 5px 15px;
+  padding: 5px 18px;
   border: 1px solid rgb(207, 207, 207);
   border-radius: 5px;
+  margin-bottom: .5rem;
 }
 
-.optionButton:hover {
+.loginOptionButton:hover {
   background-color: #dbdbdb;
 }
 

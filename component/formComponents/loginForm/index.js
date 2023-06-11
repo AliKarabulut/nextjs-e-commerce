@@ -17,10 +17,7 @@ const LoginForm = () => {
 
   const { pending } = useSelector((state) => state.auth);
   const { error } = useSelector((state) => state.auth);
-  const { successful } = useSelector((state) => state.auth);
-  if(successful){
-    router.push("/")
-  }
+
 
   const handleFormSubmit = (e) => {
     e.preventDefault();

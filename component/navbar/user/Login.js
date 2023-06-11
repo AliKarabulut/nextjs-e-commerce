@@ -63,7 +63,7 @@ function LoginButton() {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <FaUser /> <span>My Account</span>
+          <FaUser /> <span>Account</span>
           {showOptions && (
             <div className={styles.options}>
               <div className={styles.name}>{profile.username}</div>

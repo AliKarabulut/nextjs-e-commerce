@@ -1,14 +1,13 @@
 import Image from "next/image";
 import styles from "./orders.module.css";
 import Button from "../button";
-import { Fragment } from "react";
 
 const getData = async (id) => {
   const response = await fetch("https://fakestoreapi.com/products/" + id);
   const data = await response.json();
   return data;
 };
-const Orders = async ({ order }) => {
+const Orders = async ({order}) => {
   return (
     <div className={styles.order}>
       <div className={styles.detailContainer}>
