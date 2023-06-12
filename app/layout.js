@@ -1,11 +1,7 @@
-import { cookies } from "next/headers";
 import { StoreProvider } from "@/stores/store-provider";
 import { headers } from "next/headers";
-import { store } from "@/stores";
 import Navbar from "@/component/navbar/Navbar";
 import Footer from "@/component/footer";
-import { shoppingCart } from "@/stores/user-cart";
-import { userProfile } from "@/stores/user-profile";
 import { Source_Sans_Pro } from "next/font/google";
 import "../styles/reset.css";
 import "../styles/globals.css";
@@ -21,15 +17,6 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, mobileLogin }) {
-  const cookieStore = cookies();
-  const id = cookieStore.get("id");
-  if (id) {
-    await store.dispatch(shoppingCart(id.value));
-    await store.dispatch(userProfile(id.value));
-  }
-  const { cart } = store.getState().cart;
-  const { profile } = store.getState().profile;
-
   const headersList = headers();
   const referer = headersList.get("user-agent");
   const device = referer?.match(
@@ -39,18 +26,12 @@ export default async function RootLayout({ children, mobileLogin }) {
     : "desktop";
 
   if (device === "mobile") {
-    return (
-      <StoreProvider preloadedState={{ cart: { cart }, profile: { profile } }}>
-        {mobileLogin}
-      </StoreProvider>
-    );
+    return <StoreProvider>{mobileLogin}</StoreProvider>;
   } else {
     return (
       <html lang="en">
         <body className={inter.className}>
-          <StoreProvider
-            preloadedState={{ cart: { cart }, profile: { profile } }}
-          >
+          <StoreProvider>
             <Navbar />
             <main>{children}</main>
             <Footer></Footer>

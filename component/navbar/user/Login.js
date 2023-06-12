@@ -10,9 +10,8 @@ import { actions as userActions } from "@/stores/user-profile";
 import { actions as cartActions } from "@/stores/user-cart";
 import styles from "./Login.module.css";
 
-function LoginButton() {
-  const { profile } = useSelector((state) => state.profile);
-  console.log(profile);
+function LoginButton({profile}) {
+  
   const [showOptions, setShowOptions] = useState(false);
   const [successful, setSuccessful] = useState(false);
   useEffect(() => {
@@ -77,6 +76,7 @@ function LoginButton() {
                 href="/logout"
                 className={styles.accountOptionButton}
                 onClick={logoutHandler}
+                prefetch={false}
               >
                 <VscSignOut /> Sign Out
               </Link>
