@@ -1,16 +1,12 @@
+"use client";
 import Carts from "@/component/cart";
 import { store } from "@/stores";
-import { cookies } from "next/headers";
-import { Fragment } from "react";
-import { getShoppingCart } from "@/stores/user-cart";
 
-const Cart = async () => {
-  const cookieStore = cookies();
-  const id = cookieStore.get("id");
-  if (id) {
-    await store.dispatch(getShoppingCart(id.value));
-  }
-  const { cart } = store.getState().cart;
+import { Fragment } from "react";
+import { useSelector } from "react-redux";
+
+const Cart = () => {
+  const cart = useSelector((state) => state.cart.cart);
   console.log(cart);
   return (
     <Fragment>
@@ -25,7 +21,7 @@ const Cart = async () => {
             width: "100%",
           }}
         >
-          {cart.products.map((e) => {
+          {cart.products?.map((e) => {
             return <Carts cart={e} id={cart.id} />;
           })}
         </div>

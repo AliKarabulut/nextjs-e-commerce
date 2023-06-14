@@ -1,9 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = {
-  cart: {},
-};
-
 export const getShoppingCart = createAsyncThunk(
   "cart/getShoppingCart",
   async (id) => {
@@ -21,13 +17,13 @@ export const addShoppingCart = createAsyncThunk(
       method: "PATCH",
       body: JSON.stringify(reqBody),
     });
-    return data.json();
+    return await data.json();
   }
 );
 
 export const { actions, reducer } = createSlice({
   name: "cart",
-  initialState,
+  initialState: { cart: {} },
   reducers: {
     deleteCart: (state, action) => {
       state.cart = {};
@@ -38,17 +34,16 @@ export const { actions, reducer } = createSlice({
       state.cart = action.payload[0];
     });
     builder.addCase(addShoppingCart.fulfilled, (state, action) => {
-      // console.log(action.payload)
-      // const existingProductIndex = state.cart.products.findIndex(
-      //   (item) => item.productId === action.payload.productId
-      // );
-      //   console.log(existingProductIndex)
-      // if (existingProductIndex !== -1) {
-      //   state.cart.products[existingProductIndex].quantity +=
-      //     action.payload.quantity;
-      // } else {
-      //   state.cart.products.push(action.payload);
-      // }
+      const existingProductIndex = state.cart.products.findIndex(
+        (item) => item.productId === action.payload.data.products[0].productId
+      );
+      console.log(existingProductIndex);
+      if (existingProductIndex !== -1) {
+        state.cart.products[existingProductIndex].quantity =
+          action.payload.data.products[0].quantity;
+      } else {
+        state.cart.products.push(action.payload.data.products);
+      }
     });
   },
 });

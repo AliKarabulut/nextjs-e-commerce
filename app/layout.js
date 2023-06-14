@@ -1,10 +1,12 @@
 import { StoreProvider } from "@/stores/store-provider";
-import { headers } from "next/headers";
+import { cookies, headers } from "next/headers";
 import Navbar from "@/component/navbar/Navbar";
 import Footer from "@/component/footer";
 import { Source_Sans_Pro } from "next/font/google";
 import "../styles/reset.css";
 import "../styles/globals.css";
+import { store } from "@/stores";
+import { getShoppingCart } from "@/stores/user-cart";
 
 const inter = Source_Sans_Pro({
   subsets: ["latin"],
@@ -17,6 +19,13 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children, mobileLogin }) {
+  const cookieStore = cookies();
+  const id = cookieStore.get("id");
+  if (id) {
+    await store.dispatch(getShoppingCart(id.value));
+  }
+  const { cart } = store.getState().cart;
+
   const headersList = headers();
   const referer = headersList.get("user-agent");
   const device = referer?.match(
@@ -31,7 +40,7 @@ export default async function RootLayout({ children, mobileLogin }) {
     return (
       <html lang="en">
         <body className={inter.className}>
-          <StoreProvider>
+          <StoreProvider preloadedState={{ cart: { cart } }}>
             <Navbar />
             <main>{children}</main>
             <Footer></Footer>
