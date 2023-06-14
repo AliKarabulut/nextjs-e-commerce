@@ -1,32 +1,38 @@
 import ProductCard from "@/component/product-card/product-card.js";
 import ProductContainer from "@/component/product-container/product-container";
-// import { getCategoryProduct } from "../api/categoryProducts/[category]/route";
+import SortProducts from "@/component/sortProducts";
+import { notFound } from "next/navigation";
+import { Fragment } from "react";
 
-export const dynamicParams = false;
-export const revalidate = 600;
-export const dynamic = "force-static";
 
-export const generateStaticParams = async () => {
-  const categories = await fetch(
-    "https://fakestoreapi.com/products/categories"
-  );
-  const data = await categories.json();
-  return data.map((categories) => ({
-    category: categories,
-  }));
+const getData = async (category, searchParams) => {
+  const search = searchParams ? `?sort=${searchParams.sort}` : null;
+  try {
+    const data = await fetch(
+      `https://fakestoreapi.com/products/category/${category+search}`
+    );
+    return data.json();
+  } catch (error) {
+    throw new Error("Similar products could not be fetched!");
+  }
 };
 
-const Category = async ({ params: { category } }) => {
-  const products = await fetch(
-    "https://fakestoreapi.com/products/category/" + category
-  );
-  const data = await products.json();
+const Category = async ({ params: { category }, searchParams }) => {
+  const products = await getData(category, searchParams);
+
+  if (products.length === 0 ) {
+   notFound()
+  }
+
   return (
-    <ProductContainer>
-      {data.map((e) => {
-        return <ProductCard products={e} />;
-      })}
-    </ProductContainer>
+    <Fragment>
+      <SortProducts />
+      <ProductContainer>
+        {products.map((e) => {
+          return <ProductCard products={e} />;
+        })}
+      </ProductContainer>
+    </Fragment>
   );
 };
 

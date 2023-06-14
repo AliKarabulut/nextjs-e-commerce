@@ -1,0 +1,40 @@
+.selectWrapper {
+  position: relative;
+  width: 200px;
+  height: fit-content;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  user-select: none;
+}
+
+.selectedOptions {
+  font-size: 1.6rem;
+  padding: 0.5rem 1rem;
+}
+
+.sortOptions {
+  position: absolute;
+  left: -1px;
+  margin-top: 4rem;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+  width: 200px;
+}
+
+.sortOptions li {
+  width: 100%;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+}
+.sortOptions a {
+  font-size: 1.6rem;
+}
+
+.selectWrapper svg {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  z-index: -1;
+}

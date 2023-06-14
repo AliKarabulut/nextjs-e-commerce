@@ -1,17 +1,19 @@
 import { notFound } from "next/navigation";
 import ProductContainer from "@/component/product-container/product-container";
 import ProductCard from "@/component/product-card/product-card.js";
+import SortProducts from "@/component/sortProducts";
+import { Fragment } from "react";
 
-const getData = async (id) => {
-  if (!id) {
+const getData = async (searchParams) => {
+  if (!searchParams) {
     notFound();
   }
   try {
-    const response = await fetch(`https://fakestoreapi.com/products`);
+    const response = await fetch(`https://fakestoreapi.com/products${searchParams.sort ? `?sort=${searchParams.sort}` : ""}`);
     const data = await response.json();
 
     const filteredData = data.filter((product) =>
-      product.title.toLowerCase().includes(id.toLowerCase())
+      product.title.toLowerCase().includes(searchParams.s.toLowerCase())
     );
 
     return filteredData;
@@ -21,18 +23,20 @@ const getData = async (id) => {
 };
 
 export default async function SearchBar({ searchParams }) {
-  const id = searchParams.s;
-
+  console.log(searchParams.s)
   if (!searchParams) {
     notFound();
   }
-  const filteredProducts = await getData(id);
+  const filteredProducts = await getData(searchParams);
 
   return (
-    <ProductContainer>
-      {filteredProducts.map((e) => {
-        return <ProductCard products={e} />;
-      })}
-    </ProductContainer>
+    <Fragment>
+      <SortProducts params={"?s="+ searchParams.s}/>
+      <ProductContainer>
+        {filteredProducts.map((e) => {
+          return <ProductCard products={e} />;
+        })}
+      </ProductContainer>
+    </Fragment>
   );
 }

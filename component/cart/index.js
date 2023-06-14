@@ -21,38 +21,32 @@ const Carts =  ({ cart, id }) => {
     getData(cart.productId);
   }, [cart]);
 
+  useEffect(() => {
+    console.log(quantity);
+    store.dispatch(
+      addShoppingCart({
+        id: id,
+        productId: cart.productId,
+        quantity: quantity,
+      })
+    );
+  }, [quantity]);
+
   const minusHandler = () => {
-    setQuantity(quantity - 1);
-    store.dispatch(
-      addShoppingCart({
-        id: id,
-        productId: cart.productId,
-        quantity: quantity,
-      })
-    );
+    setQuantity((prevQuantity) => prevQuantity - 1);
   };
+
   const plusHandler = () => {
-    
-    setQuantity(quantity + 1);
-    store.dispatch(
-      addShoppingCart({
-        id: id,
-        productId: cart.productId,
-        quantity: quantity,
-      })
-    );
+    setQuantity((prevQuantity) => prevQuantity + 1);
   };
-  const inputHandler = async () => {
-    store.dispatch(
-      addShoppingCart({
-        id: id,
-        productId: cart.productId,
-        quantity: quantity,
-      })
-    );
+
+  const inputHandler = (event) => {
+    const newQuantity = parseInt(event.target.value);
+    setQuantity(newQuantity);
   };
+
   if (!cart || !product) {
-    return null; // Render null or a loading spinner if cart or product data is missing
+    return null; 
   }
 
   return (
