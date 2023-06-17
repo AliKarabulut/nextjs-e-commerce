@@ -6,28 +6,50 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'fakestoreapi.com',
-        port: '',
-        pathname: '/img/**',
+        protocol: "https",
+        hostname: "fakestoreapi.com",
+        port: "",
+        pathname: "/img/**",
       },
     ],
   },
-  async redirects(){
+  async redirects() {
     return [
       {
-      source: '/login' || '/register' || '/forgotpassword',
-      has: [
-        {
-          type: 'cookie',
-          key: 'token',
-        }
-      ],
-      permanent: false,
-      destination: '/'
-    }
-  ]
-  }
-}
+        source: "/login" || "/register" || "/forgotpassword",
+        has: [
+          {
+            type: "cookie",
+            key: "token",
+          },
+        ],
+        permanent: false,
+        destination: "/",
+      },
+      {
+        source: "/account",
+        has: [
+          {
+            type: "cookie",
+            key: "token",
+          },
+        ],
+        permanent: false,
+        destination: "/account/order",
+      },
+      {
+        source: "/account/:path?",
+        missing: [
+          {
+            type: "cookie",
+            key: "token",
+          },
+        ],
+        permanent: false,
+        destination: "/login",
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

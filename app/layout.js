@@ -7,6 +7,7 @@ import "../styles/reset.css";
 import "../styles/globals.css";
 import { store } from "@/stores";
 import { getShoppingCart } from "@/stores/user-cart";
+import { userProfile } from "@/stores/user-profile";
 
 const inter = Source_Sans_Pro({
   subsets: ["latin"],
@@ -23,8 +24,11 @@ export default async function RootLayout({ children, mobileLogin }) {
   const id = cookieStore.get("id");
   if (id) {
     await store.dispatch(getShoppingCart(id.value));
+    await store.dispatch(userProfile(id.value));
   }
   const { cart } = store.getState().cart;
+  const { profile } = store.getState().profile;
+  console.log(profile.name);
 
   const headersList = headers();
   const referer = headersList.get("user-agent");
@@ -35,12 +39,18 @@ export default async function RootLayout({ children, mobileLogin }) {
     : "desktop";
 
   if (device === "mobile") {
-    return <StoreProvider>{mobileLogin}</StoreProvider>;
+    return (
+      <StoreProvider preloadedState={{ cart: { cart }, profile: { profile } }}>
+        {mobileLogin}
+      </StoreProvider>
+    );
   } else {
     return (
       <html lang="en">
         <body className={inter.className}>
-          <StoreProvider preloadedState={{ cart: { cart } }}>
+          <StoreProvider
+            preloadedState={{ cart: { cart }, profile: { profile } }}
+          >
             <Navbar />
             <main>{children}</main>
             <Footer></Footer>

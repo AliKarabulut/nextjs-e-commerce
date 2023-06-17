@@ -1,0 +1,37 @@
+.leftBarContainer {
+  width: 15rem;
+  height: 100%;
+}
+
+.leftBarContainer section {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.leftBarContainer p,
+.leftBarContainer h3 {
+  background-color: #ebebeb;
+  font-size: 1.7rem;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+}
+
+.leftBarContainer h3 {
+  border-bottom: 1px solid #9d9d9d;
+}
+
+.leftBarContainer a {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+}
+
+.accountContainer {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}

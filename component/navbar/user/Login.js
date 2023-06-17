@@ -69,7 +69,7 @@ function LoginButton({profile}) {
               <Link href="/account" className={styles.accountOptionButton}>
                 <AiOutlineUser /> Account
               </Link>
-              <Link href="/order" className={styles.accountOptionButton}>
+              <Link href="/account/order" className={styles.accountOptionButton}>
                 <BiBasket /> Order
               </Link>
               <Link

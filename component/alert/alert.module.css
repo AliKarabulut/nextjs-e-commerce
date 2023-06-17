@@ -1,0 +1,16 @@
+.alertContainer {
+  width: 8rem;
+  height: 3rem;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  background-color: bisque;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}

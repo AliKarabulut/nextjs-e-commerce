@@ -53,7 +53,7 @@ const Carts = ({ cart, id }) => {
   };
 
   if (!cart || !product) {
-    return null;
+    return <div>Loading...</div>;
   }
 
   return (

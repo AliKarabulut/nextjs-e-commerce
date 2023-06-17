@@ -17,7 +17,6 @@ const SortProducts = () => {
   
 
   useEffect(() => {
-    console.log(searchParams.get("s"))
     if (searchParams.get("s")) {
       setPathName(path +"?s="+ searchParams.get("s") +"&");
     } else {
