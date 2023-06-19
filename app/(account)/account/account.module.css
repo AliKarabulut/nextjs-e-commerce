@@ -1,31 +1,44 @@
 .leftBarContainer {
-  width: 15rem;
+  width: 17rem;
   height: 100%;
+  margin-top: 1rem;
 }
 
 .leftBarContainer section {
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
+  border: 1px solid #9DB2BF;
+  border-radius: 0.2rem;
+  margin-bottom: 1.5rem;
   display: flex;
   flex-direction: column;
 }
 
 .leftBarContainer p,
 .leftBarContainer h3 {
-  background-color: #ebebeb;
+  background-color: #DDE6ED;
   font-size: 1.7rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
+  text-transform: capitalize;
 }
 
 .leftBarContainer h3 {
   border-bottom: 1px solid #9d9d9d;
+  margin-bottom: 1rem;
 }
 
 .leftBarContainer a {
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  padding: .6rem 1rem;
+  font-size: 1.4rem;
+  width: fit-content;
+  transition: all 0.3s ease-in-out;
+}
+
+.leftBarContainer a:hover {
+  color: #526D82;
+}
+
+.leftBarContainer a:last-child {
+margin-bottom: 1rem;
 }
 
 .accountContainer {

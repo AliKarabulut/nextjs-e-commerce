@@ -10,8 +10,8 @@ import { actions as userActions } from "@/stores/user-profile";
 import { actions as cartActions } from "@/stores/user-cart";
 import styles from "./Login.module.css";
 
-function LoginButton({profile}) {
-  
+function LoginButton() {
+  const {profile}= useSelector((state) => state.profile);
   const [showOptions, setShowOptions] = useState(false);
   const [successful, setSuccessful] = useState(false);
   useEffect(() => {

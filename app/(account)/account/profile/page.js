@@ -52,7 +52,7 @@ const Profile = (props) => {
     <div className={styles.formContainer}>
       <form className={styles.userContainer} onSubmit={handleUpdateProfile}>
         <div>
-          <label>Name</label>
+          <label htmlFor="">Name:</label>
           <input
             type="text"
             value={name}
@@ -60,7 +60,7 @@ const Profile = (props) => {
           />
         </div>
         <div>
-          <label>Lastname</label>
+          <label>Lastname:</label>
           <input
             type="text"
             value={lastname}
@@ -69,7 +69,7 @@ const Profile = (props) => {
         </div>
 
         <div>
-          <label>E-Mail</label>
+          <label>E-Mail:</label>
           <input
             type="text"
             value={email}
@@ -77,7 +77,7 @@ const Profile = (props) => {
           />
         </div>
         <div>
-          <label>Phone</label>
+          <label>Phone:</label>
           <input
             type="number"
             value={phone}

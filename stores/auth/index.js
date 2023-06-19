@@ -2,12 +2,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchUser = createAsyncThunk(
   "userLogin",
-  async ({ email, password }) => {
+  async ({ email, password }, { rejectWithValue }) => {
     const reqBody = { username: email, password: password };
-    await fetch("api/userLogin", {
+
+    const res = await fetch("api/userLogin", {
       method: "POST",
       body: JSON.stringify(reqBody),
     });
+ 
+    const data = await res.json();
+    return data;
   }
 );
 
@@ -37,13 +41,17 @@ export const { reducer, actions } = createSlice({
       state.pending = true;
     });
     builder.addCase(fetchUser.fulfilled, (state, action) => {
+      console.log("fulfilled");
+      console.log(action.payload)
       state.pending = false;
       state.successful = true;
     });
 
     builder.addCase(fetchUser.rejected, (state, action) => {
+      console.log("rejected");
+      console.log(action); // Access the error message here
       state.pending = false;
-      state.error = action.error.message;
+      state.error = action.error.message; // Assign the error message to the state
     });
 
     builder.addCase(fetchRegister.pending, (state, action) => {
@@ -56,7 +64,7 @@ export const { reducer, actions } = createSlice({
 
     builder.addCase(fetchRegister.rejected, (state, action) => {
       state.pending = false;
-      state.error = action.error.message;
+      state.error = action.payload;
     });
   },
 });

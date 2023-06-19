@@ -1,7 +1,7 @@
 .footerContainer{
     width: 100%;
     height: 100px;
-    background-color: blueviolet;
+    background-color: #27374D;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,6 +10,6 @@
 }
 
 .footerContainer div{
-    font-size: 1.1rem;
-    color: white;
+    font-size: 1.4rem;
+    color: #DDE6ED;
 }

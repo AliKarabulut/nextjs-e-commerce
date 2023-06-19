@@ -1,13 +1,13 @@
 import Image from "next/image";
 import styles from "./orders.module.css";
-import Button from "../button";
+import Link from "next/link";
 
 const getData = async (id) => {
   const response = await fetch("https://fakestoreapi.com/products/" + id);
   const data = await response.json();
   return data;
 };
-const Orders = async ({order}) => {
+const Orders = async ({ order }) => {
   return (
     <div className={styles.order}>
       <div className={styles.detailContainer}>
@@ -15,15 +15,15 @@ const Orders = async ({order}) => {
           <b>Date: </b>
           {new Date(order.date).toLocaleDateString()}
         </div>
-        <Button>Order detail</Button>
+        <button className={styles.orderDetailButton}>Order detail</button>
       </div>
 
       {order.products.map(async (e, index) => {
         const product = await getData(e.productId);
         return (
           <div className={styles.orderCard}>
-            <h3 className={styles.orderTitle}>{product.title}</h3>
-            <div className={styles.imageContainer}>
+            <Link href={`/${e.category}/${e.id}`} className={styles.orderTitle}>{product.title}</Link>
+            <Link href={`/${e.category}/${e.id}`} className={styles.imageContainer}>
               <Image
                 src={product.image}
                 alt={product.title}
@@ -31,10 +31,10 @@ const Orders = async ({order}) => {
                 sizes="(width: 100%) (height: 100%)"
                 style={{ objectFit: "contain" }}
               />
-            </div>
-            <div className={styles.orderQuantity}>
-              Quantity: <b>{order.products[index].quantity}</b>
-            </div>
+            </Link>
+            <p className={styles.orderQuantity}>
+              Quantity: {order.products[index].quantity}
+            </p>
           </div>
         );
       })}

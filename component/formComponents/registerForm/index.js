@@ -20,9 +20,9 @@ const RegisterForm = (props) => {
   const passwordRef = useRef("");
   const dispatch = useDispatch();
 
-  const { pending } = useSelector((state) => state.user);
-  const { error } = useSelector((state) => state.user);
-  const { successful } = useSelector((state) => state.user);
+  const { pending } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.auth);
+  const { successful } = useSelector((state) => state.auth);
   if(successful){
     router.push("/")
   }

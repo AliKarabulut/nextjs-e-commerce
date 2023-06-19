@@ -1,12 +1,28 @@
-import styles from "./alert.module.css";
+import { Fragment } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Alert = ({ text, bool }) => {
-  const containerClassName = `${styles.alertContainer} ${bool ? styles.green : styles.red}`;
+const Alert = ({ text }) => {
+  toast.success(text, {
+    position: toast.POSITION.TOP_CENTER_RIGHT,
+  });
+
+  toast.error(text, {
+    position: toast.POSITION.TOP_RIGHT_CENTER
+  });
+
+  toast.warn(text, {
+    position: toast.POSITION.TOP_RIGHT_CENTER
+  });
+
+  toast.info(text, {
+    position: toast.POSITION.TOP_RIGHT_CENTER
+  });
 
   return (
-    <div className={containerClassName}>
-      <div className={styles.alertText}>{text}</div>
-    </div>
+    <Fragment>
+      <ToastContainer />
+    </Fragment>
   );
 };
 

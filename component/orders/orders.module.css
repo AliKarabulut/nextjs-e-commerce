@@ -4,27 +4,27 @@
   width: 80%;
   height: fit-content;
   padding: 1rem;
-  border: 1px solid #ccc;
+  border: 1px solid #9db2bf;
   border-radius: 5px;
   margin: 1rem 0;
 }
 
 .detailContainer {
   display: grid;
-  grid-template-columns: 2fr 0.15fr;
+  grid-template-columns: 9fr 1fr;
   align-items: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #9db2bf;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
 
 .orderCard {
   display: grid;
-  grid-template-columns: 2fr 1fr 0.2fr;
+  grid-template-columns: 7fr 2fr 1fr;
   align-items: center;
   margin-top: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #9db2bf;
 }
 
 .orderCard:last-child {
@@ -33,24 +33,42 @@
 
 .imageContainer {
   position: relative;
-  width: 50px;
-  height: 70px;
+  width: 60px;
+  height: 80px;
   display: flex;
   align-items: center;
 }
 
 .orderTitle {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: normal;
+  width: fit-content;
 }
 
 .orderQuantity {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .date b {
-  font-size: 1.3rem;
+  font-weight: 600;
 }
 
-.date {
+.date,
+.date b {
+  font-size: 1.6rem;
+}
+
+.orderDetailButton {
+  width: 10rem;
+  height: 3rem;
+  background-color: #dde6ed;
+
+  border: 1px solid #9db2bf;
+  border-radius: 0.5rem;
   font-size: 1.2rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.orderDetailButton:hover {
+  background-color: #9db2bf;
 }

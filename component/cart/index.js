@@ -78,17 +78,15 @@ const Carts = ({ cart, id }) => {
       </Link>
       <div className={styles.quantityWrapper}>
         <BsFileMinus onClick={minusHandler} />
-        <div>
-          <input
-            className={styles.quantity}
-            value={quantity}
-            onChange={inputHandler}
-          />
-        </div>
+        <input
+          className={styles.quantity}
+          value={quantity}
+          onChange={inputHandler}
+        />
         <BsFilePlus onClick={plusHandler} />
       </div>
       <div className={styles.totalPrice}>{product.price}</div>
-      <AiOutlineDelete />
+      <AiOutlineDelete className={styles.delete} />
     </div>
   );
 };

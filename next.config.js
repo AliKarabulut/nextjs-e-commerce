@@ -13,43 +13,7 @@ const nextConfig = {
       },
     ],
   },
-  async redirects() {
-    return [
-      {
-        source: "/login" || "/register" || "/forgotpassword",
-        has: [
-          {
-            type: "cookie",
-            key: "token",
-          },
-        ],
-        permanent: false,
-        destination: "/",
-      },
-      {
-        source: "/account",
-        has: [
-          {
-            type: "cookie",
-            key: "token",
-          },
-        ],
-        permanent: false,
-        destination: "/account/order",
-      },
-      {
-        source: "/account/:path?",
-        missing: [
-          {
-            type: "cookie",
-            key: "token",
-          },
-        ],
-        permanent: false,
-        destination: "/login",
-      },
-    ];
-  },
+  
 };
 
 module.exports = nextConfig;

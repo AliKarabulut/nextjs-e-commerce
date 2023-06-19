@@ -3,9 +3,6 @@ import styles from "./Navbar.module.css";
 import Categories from "./Categories";
 import LoginButton from "./user/Login";
 import SearchBar from "./searchBar";
-import { cookies } from "next/headers";
-import { store } from "@/stores";
-import { userProfile } from "@/stores/user-profile";
 
 const getData = async () => {
   try {
@@ -16,13 +13,7 @@ const getData = async () => {
   }
 };
 const Navbar = async () => {
-  const cookieStore = cookies();
-  const id = cookieStore.get("id");
-  if (id) {
-    await store.dispatch(userProfile(id.value));
-  }
 
-  const { profile } = store.getState().profile;
   const categories = await getData();
 
   return (
@@ -32,7 +23,7 @@ const Navbar = async () => {
           E-Commerce
         </Link>
         <SearchBar></SearchBar>
-        <LoginButton profile={profile} />
+        <LoginButton  />
       </header>
       <Categories categories={categories} />
     </div>
