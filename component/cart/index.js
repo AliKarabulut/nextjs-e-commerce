@@ -5,7 +5,6 @@ import { BsFileMinus, BsFilePlus } from "react-icons/bs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { addShoppingCart } from "@/stores/user-cart";
-import { store } from "@/stores";
 import styles from "./cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -28,6 +27,7 @@ const Carts = ({ cart, id }) => {
 
   useEffect(() => {
     if (firtsRender) {
+      console.log("addShoppingCart");
       dispatch(
         addShoppingCart({
           id: id,

@@ -1,11 +1,17 @@
+.leftBarWrapper {
+  display: flex;
+  margin-top: 1rem;
+  height: 100%;
+}
 .leftBarContainer {
   width: 17rem;
   height: 100%;
-  margin-top: 1rem;
 }
-
+.leftBarWrapper svg {
+display: none;
+}
 .leftBarContainer section {
-  border: 1px solid #9DB2BF;
+  border: 1px solid #9db2bf;
   border-radius: 0.2rem;
   margin-bottom: 1.5rem;
   display: flex;
@@ -14,7 +20,7 @@
 
 .leftBarContainer p,
 .leftBarContainer h3 {
-  background-color: #DDE6ED;
+  background-color: #dde6ed;
   font-size: 1.7rem;
   padding: 0.5rem 1rem;
   font-weight: 600;
@@ -27,18 +33,18 @@
 }
 
 .leftBarContainer a {
-  padding: .6rem 1rem;
+  padding: 0.6rem 1rem;
   font-size: 1.4rem;
   width: fit-content;
   transition: all 0.3s ease-in-out;
 }
 
 .leftBarContainer a:hover {
-  color: #526D82;
+  color: #526d82;
 }
 
 .leftBarContainer a:last-child {
-margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .accountContainer {
@@ -47,4 +53,66 @@ margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
+}
+
+@media (max-width: 768px) {
+  .leftBarWrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    top: -40rem;
+    z-index: 1;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .leftBarWrapper svg {
+    position: absolute;
+    display: block;
+    top: 40.5rem;
+    left: 1rem;
+    font-size: 2.5rem;
+    margin-left: 0px;
+  }
+
+  .leftBarContainer {
+    width: 100%;
+    left: 50%;
+  }
+  .leftBarContainer section {
+    border: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .leftBarContainer section:first-child {
+    text-align: left;
+  }
+
+  .leftBarContainer a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .leftBarContainer p,
+  .leftBarContainer h3 {
+    background-color: white;
+    width: 100%;
+  }
+
+  .leftBarWrapper.active {
+    top: 0;
+  }
+
+  .leftBarWrapper.active svg {
+    left: 94%;
+    top: 0;
+  }
+
+  .accountContainer {
+    width: 100%;
+    margin-left: 0;
+  }
 }

@@ -23,7 +23,7 @@ export const addShoppingCart = createAsyncThunk(
 
 export const { actions, reducer } = createSlice({
   name: "cart",
-  initialState: { cart: {} },
+  initialState: { cart: "" },
   reducers: {
     deleteCart: (state, action) => {
       state.cart = {};
@@ -34,6 +34,8 @@ export const { actions, reducer } = createSlice({
       state.cart = action.payload[0];
     });
     builder.addCase(addShoppingCart.fulfilled, (state, action) => {
+      console.log("fulfilled");
+      console.log(action.payload)
       const existingProductIndex = state.cart.products.findIndex(
         (item) => item.productId === action.payload.data.products[0].productId
       );

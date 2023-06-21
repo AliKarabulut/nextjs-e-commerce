@@ -47,6 +47,7 @@
 
 .orderQuantity {
   font-size: 1.4rem;
+  white-space: nowrap;
 }
 
 .date b {
