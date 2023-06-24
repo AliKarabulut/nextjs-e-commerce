@@ -11,6 +11,8 @@
   margin: 1rem 0;
 }
 
+
+
 .cartWrapper > :nth-last-child(-n + 3) {
   justify-self: center;
 }
@@ -72,4 +74,11 @@
 
 .delete:hover {
   color: #9db2bf;
+}
+
+
+@media (max-width: 768px) {
+  .cartWrapper {
+    width: 90%;
+  }
 }
