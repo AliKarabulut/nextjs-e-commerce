@@ -11,7 +11,16 @@ const ProductCard = ({ products }) => {
       <div className={styles.productCard}>
         <div className={styles.imageTitleContainer}>
           {" "}
-          <div className={styles.imageContainer}> <Image src={products.image} alt={products.title}  fill={true} sizes="(width: 100%) (height: 100%)" style={{objectFit: "contain"}}/></div>
+          <div className={styles.imageContainer}>
+            {" "}
+            <Image
+              src={products.image}
+              alt={products.title}
+              fill={true}
+              sizes="(width: 100%) (height: 100%)"
+              style={{ objectFit: "contain" }}
+            />
+          </div>
           <div className={styles.title}>
             {products.title.length > 30
               ? products.title.substring(0, 30) + "..."

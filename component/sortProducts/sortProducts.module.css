@@ -5,11 +5,15 @@
   border: 1px solid black;
   border-radius: 0.3rem;
   user-select: none;
+  margin-bottom: 1.5rem;
+  margin-left: calc(80% - 200px);
+  z-index: 999;
 }
 
 .selectedOptions {
   font-size: 1.6rem;
   padding: 0.5rem 1rem;
+
 }
 
 .sortOptions {
@@ -19,6 +23,8 @@
   border: 1px solid black;
   border-radius: 0.3rem;
   width: 200px;
+  background-color: white;
+
 }
 
 .sortOptions li {

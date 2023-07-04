@@ -28,7 +28,7 @@ export default async function RootLayout({ children, mobileLogin }) {
   }
   const { cart } = store.getState().cart;
   const { profile } = store.getState().profile;
-  console.log(profile.name);
+  console.log(cart);
 
   const headersList = headers();
   const referer = headersList.get("user-agent");

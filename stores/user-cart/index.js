@@ -1,5 +1,8 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 
+const initialState = {
+  cart: "",
+};
 export const getShoppingCart = createAsyncThunk(
   "cart/getShoppingCart",
   async (id) => {
@@ -9,13 +12,23 @@ export const getShoppingCart = createAsyncThunk(
   }
 );
 
-export const addShoppingCart = createAsyncThunk(
-  "cart/addShoppingCart",
-  async ({ id, productId, quantity }) => {
-    const reqBody = { id: id, productId: productId, quantity: quantity };
-    const data = await fetch("api/updateProduct", {
-      method: "PATCH",
-      body: JSON.stringify(reqBody),
+export const updateShoppingCart = createAsyncThunk(
+  "cart/updateShoppingCart",
+  async ({ productId, quantity }, thunkAPI) => {
+    const cart = thunkAPI.getState().cart.cart;
+    let newCart = structuredClone(cart);
+    const existingProductIndex = newCart.products.findIndex(
+      (item) => item.productId === productId
+    );
+    if (existingProductIndex !== -1) {
+      newCart.products[existingProductIndex].quantity += quantity;
+    } else {
+      newCart.products.push({ productId: productId, quantity: quantity});
+    }
+    
+    const data = await fetch("/api/updateProduct", {
+      method: "PUT",
+      body: JSON.stringify(newCart),
     });
     return await data.json();
   }
@@ -23,7 +36,7 @@ export const addShoppingCart = createAsyncThunk(
 
 export const { actions, reducer } = createSlice({
   name: "cart",
-  initialState: { cart: "" },
+  initialState: initialState,
   reducers: {
     deleteCart: (state, action) => {
       state.cart = {};
@@ -33,19 +46,12 @@ export const { actions, reducer } = createSlice({
     builder.addCase(getShoppingCart.fulfilled, (state, action) => {
       state.cart = action.payload[0];
     });
-    builder.addCase(addShoppingCart.fulfilled, (state, action) => {
+    builder.addCase(updateShoppingCart.fulfilled, (state, action) => {
       console.log("fulfilled");
-      console.log(action.payload)
-      const existingProductIndex = state.cart.products.findIndex(
-        (item) => item.productId === action.payload.data.products[0].productId
-      );
-      console.log(existingProductIndex);
-      if (existingProductIndex !== -1) {
-        state.cart.products[existingProductIndex].quantity =
-          action.payload.data.products[0].quantity;
-      } else {
-        state.cart.products.push(action.payload.data.products);
-      }
+
+      console.log(action.payload);
+      state.cart = action.payload.data;
+
     });
   },
 });

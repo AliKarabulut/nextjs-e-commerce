@@ -1,12 +1,18 @@
 .order {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 90%;
   height: fit-content;
   padding: 1rem;
   border: 1px solid #9db2bf;
   border-radius: 5px;
   margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+  .order {
+    width: 100%;
+  }
 }
 
 .detailContainer {

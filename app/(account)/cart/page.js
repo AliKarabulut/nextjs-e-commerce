@@ -22,7 +22,7 @@ const Cart = () => {
           }}
         >
           {cart.products?.map((e) => {
-            return <Carts cart={e} id={cart.id} />;
+            return <Carts cart={e} id={cart.id} key={e.productId} />;
           })}
         </div>
       )}

@@ -8,31 +8,29 @@
 .starWrapper {
   display: flex;
   position: absolute;
-  height: 15px;
   width: max-content;
 }
 
 .star {
-  width: 12px;
-  height: 15px;
+  width: 13px;
+  height: 16px;
   color: rgb(185, 185, 185);
 }
 
 .fullStar {
-  color: yellow;
-  width: 12px;
-  height: 15px;
+  color: rgb(240, 240, 1);
+  width: 13px;
+  height: 16px;
 }
 
 .halfStar {
-  height: 15px;
+  height: 16px;
   width: var(--width);
   overflow: hidden;
 }
 
 .halfStar svg {
-  height: 15px;
-  width: 12px;
+  height: 16px;
   overflow: hidden;
-  max-width: 12px;
+  max-width: 13px;
 }

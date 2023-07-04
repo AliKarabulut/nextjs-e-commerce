@@ -4,16 +4,15 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { BsFileMinus, BsFilePlus } from "react-icons/bs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { addShoppingCart } from "@/stores/user-cart";
+import { updateShoppingCart } from "@/stores/user-cart";
 import styles from "./cart.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
-const Carts = ({ cart, id }) => {
+const Carts = async ({ cart, id }) => {
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(cart.quantity);
   const [firtsRender, setFirstRender] = useState(false);
   const dispatch = useDispatch();
-  const cartss = useSelector((state) => state.cart);
 
   useEffect(() => {
     const getData = async (id) => {
@@ -25,31 +24,35 @@ const Carts = ({ cart, id }) => {
     getData(cart.productId);
   }, [cart]);
 
-  useEffect(() => {
-    if (firtsRender) {
-      console.log("addShoppingCart");
-      dispatch(
-        addShoppingCart({
-          id: id,
-          productId: cart.productId,
-          quantity: quantity,
-        })
-      );
-    }
-    setFirstRender(true);
-  }, [quantity]);
+  // useEffect(() => {
+  //   if (firtsRender) {
+  //     console.log("addShoppingCart");
+  //     dispatch(
+  //       updateShoppingCart({
+  //         id: id,
+  //         productId: cart.productId,
+  //         quantity: quantity,
+  //       })
+  //     );
+  //   }
+  //   setFirstRender(true);
+  // }, [quantity]);
 
   const minusHandler = () => {
-    setQuantity((prevQuantity) => prevQuantity - 1);
+    if (quantity === 1) {
+      return;
+    } else {
+      setQuantity((pre) => pre - 1);
+    }
   };
 
   const plusHandler = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    setQuantity((pre) => pre + 1);
   };
 
   const inputHandler = (event) => {
     const newQuantity = parseInt(event.target.value);
-    setQuantity(newQuantity);
+    setQuantity((pre) => pre - newQuantity);
   };
 
   if (!cart || !product) {
@@ -79,6 +82,8 @@ const Carts = ({ cart, id }) => {
       <div className={styles.quantityWrapper}>
         <BsFileMinus onClick={minusHandler} />
         <input
+          type="number"
+          min={1}
           className={styles.quantity}
           value={quantity}
           onChange={inputHandler}

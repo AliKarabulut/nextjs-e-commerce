@@ -23,7 +23,7 @@ const MainPage = async ({ searchParams }) => {
       <SortProducts />
       <ProductContainer>
         {products.map((e) => {
-          return <ProductCard products={e} />;
+          return <ProductCard products={e} key={e.id}/>;
         })}
       </ProductContainer>
     </Fragment>

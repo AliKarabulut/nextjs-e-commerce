@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { FaUser, FaShoppingCart } from "react-icons/fa";
 import Link from "next/link";
+import { useRouter } from 'next/navigation'
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineUser } from "react-icons/ai";
 import { BiBasket } from "react-icons/bi";
@@ -11,9 +12,11 @@ import { actions as cartActions } from "@/stores/user-cart";
 import styles from "./Login.module.css";
 
 function LoginButton() {
-  const {profile}= useSelector((state) => state.profile);
+  const router = useRouter()
+  const { profile } = useSelector((state) => state.profile);
   const [showOptions, setShowOptions] = useState(false);
   const [successful, setSuccessful] = useState(false);
+
   useEffect(() => {
     profile.id ? setSuccessful(true) : setSuccessful(false);
   }, [profile]);
@@ -36,8 +39,8 @@ function LoginButton() {
   return (
     <div className={styles.navLinks}>
       {!successful && (
-        <Link
-          href="/login"
+        <div
+          onClick={() => router.push("/login")}
           className={styles.navLink}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -45,19 +48,19 @@ function LoginButton() {
           <FaUser /> <span>Login</span>
           {showOptions && (
             <div className={styles.options}>
-              <Link href="/login" className={styles.loginOptionButton}>
+              <Link href="/login" prefetch={false} className={styles.loginOptionButton}>
                 Login
               </Link>
-              <Link href="/register" className={styles.loginOptionButton}>
+              <Link href="/register" prefetch={false} className={styles.loginOptionButton}>
                 Register
               </Link>
             </div>
           )}
-        </Link>
+        </div>
       )}
       {successful && (
-        <Link
-          href="/account"
+        <div
+          onClick={() => router.push("/account")}
           className={styles.navLink}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -66,23 +69,28 @@ function LoginButton() {
           {showOptions && (
             <div className={styles.options}>
               <div className={styles.name}>{profile.username}</div>
-              <Link href="/account" className={styles.accountOptionButton}>
+              <Link href="/account" prefetch={false} className={styles.accountOptionButton} >
                 <AiOutlineUser /> Account
               </Link>
-              <Link href="/account/order" className={styles.accountOptionButton}>
+              <Link
+                href="/account/order"
+                prefetch={false}
+                className={styles.accountOptionButton}
+              >
                 <BiBasket /> Order
               </Link>
               <Link
                 href="/logout"
+                prefetch={false}
                 className={styles.accountOptionButton}
                 onClick={logoutHandler}
-                prefetch={false}
+
               >
                 <VscSignOut /> Sign Out
               </Link>
             </div>
           )}
-        </Link>
+        </div>
       )}
 
       <Link href="/cart" className={styles.navLink}>

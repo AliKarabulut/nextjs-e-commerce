@@ -3,6 +3,7 @@ import SingleImageCard from "@/component/singleImageCard";
 import Star from "@/component/star";
 import { AiOutlineHeart } from "react-icons/ai";
 import styles from "./singleProduct.module.css";
+import AddCartButton from "@/component/addCartButton";
 
 const getSingleProduct = async (id) => {
   try {
@@ -24,26 +25,24 @@ const getSimilarProducts = async () => {
 
 const SingleProductPage = async ({ params: { id } }) => {
   const products = await getSingleProduct(id);
-
   const limitedResults = await getSimilarProducts();
 
   return (
     <div className={styles.singleProductsWrapper}>
-      <div className={styles.category}></div>
       <div className={styles.productContainer}>
         <SingleImageCard image={products.image} title={products.title} />
         <div className={styles.productDetailContainer}>
           <h1 className={styles.title}>{products.title}</h1>
           <div className={styles.starWrapper}>
             <Star rate={products.rating.rate}></Star>
-            <div>{products.rating.count} Değerlendirme</div>
+            <div>{products.rating.count} Rating</div>
           </div>
           <div className={styles.price}>{products.price}$</div>
-          <div>
+          <div className={styles.butonWrapper}>
             {" "}
-            <button className={styles.addButton}>Sepete Ekle</button>
+            <AddCartButton productId={products.id} />
             <button>
-              <AiOutlineHeart />
+              <AiOutlineHeart className={styles.addFavorites} />
             </button>
           </div>
           <div className={styles.seperator}>
@@ -58,7 +57,7 @@ const SingleProductPage = async ({ params: { id } }) => {
         <div className={styles.similarProducts}>
           {" "}
           {limitedResults.map((e) => {
-            return <ProductCard products={e} />;
+            return <ProductCard products={e} key={e.id} />;
           })}
         </div>
       </div>

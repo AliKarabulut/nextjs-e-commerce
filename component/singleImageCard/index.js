@@ -11,16 +11,17 @@ const SingleImageCard = ({ image, title }) => {
           alt={title}
           fill={true}
           sizes="(width: 100%) (height: 100%)"
-          style={{ objectFit: "contain", padding: "20px" }}
+          style={{ objectFit: "contain", padding: "1rem 0px" }}
+          priority={true}
         />
       </div>
       <div className={styles.smallImage}>
         <Image
           src={image}
           alt={title}
-          style={{ objectFit: "contain", padding: "20px" }}
-          fill={true}
-          sizes="(width: 100%) (height: 100%)"
+          width={50}
+          height={80}
+          style={{ objectFit: "contain", padding: "1rem 0px" }}
         />
       </div>
     </div>

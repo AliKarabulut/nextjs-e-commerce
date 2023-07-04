@@ -7,7 +7,6 @@ const Star = ({ rate }) => {
   const hasHalfStar = yellow % 20 !== 0;
 
   return (
-    <div  className={styles.ratingWrapper}>
       <div className={styles.rating}>
         <div className={styles.starWrapper}>
           {[...Array(5)].map((_, index) => (
@@ -28,7 +27,6 @@ const Star = ({ rate }) => {
           ) : null}
         </div>
       </div>
-    </div>
   );
 };
 
