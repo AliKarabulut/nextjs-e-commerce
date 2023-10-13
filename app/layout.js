@@ -30,21 +30,21 @@ export default async function RootLayout({ children, mobileLogin }) {
   const { profile } = store.getState().profile;
   console.log(cart);
 
-  const headersList = headers();
-  const referer = headersList.get("user-agent");
-  const device = referer?.match(
-    /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-  )
-    ? "mobile"
-    : "desktop";
+  // const headersList = headers();
+  // const referer = headersList.get("user-agent");
+  // const device = referer?.match(
+  //   /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+  // )
+  //   ? "mobile"
+  //   : "desktop";
 
-  if (device === "mobile") {
-    return (
-      <StoreProvider preloadedState={{ cart: { cart }, profile: { profile } }}>
-        {mobileLogin}
-      </StoreProvider>
-    );
-  } else {
+  // if (device === "mobile") {
+  //   return (
+  //     <StoreProvider preloadedState={{ cart: { cart }, profile: { profile } }}>
+  //       {mobileLogin}
+  //     </StoreProvider>
+  //   );
+  // } else {
     return (
       <html lang="en">
         <body className={inter.className}>
@@ -59,4 +59,4 @@ export default async function RootLayout({ children, mobileLogin }) {
       </html>
     );
   }
-}
+// }
